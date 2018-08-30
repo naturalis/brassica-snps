@@ -25,6 +25,7 @@ while(<>) {
 $query->setDataset("boleracea_eg_gene");
 $query->addFilter("ensembl_gene_id", \@gene_ids);
 $query->addAttribute("ensembl_gene_id");
+$query->addAttribute("uniprotsptrembl");
 $query->addAttribute("go_id");
 $query->addAttribute("name_1006");
 $query->addAttribute("definition_1006");
