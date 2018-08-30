@@ -6,30 +6,28 @@ use BioMart::Initializer;
 use BioMart::Query;
 use BioMart::QueryRunner;
 
-
-# apiExampleRegistry.xml  log4perl.conf  mart_0_4_0_5.xsl  mart_0_5_0_6.xsl  martDBLocation.xml  martURLLocation.xml  mime.types  projectRegistry.xml  registryDBPointer.xml  registryURLPointer.xml  settings.conf  templates
-
 my $confFile = "/usr/local/src/biomart-perl/conf/martURLLocation.xml";
 
-#
 # NB: change action to 'clean' if you wish to start a fresh configuration  
 # and to 'cached' if you want to skip configuration step on subsequent runs from the same registry
-#
-
 my $action='cached';
-my $initializer = BioMart::Initializer->new('registryFile'=>$confFile, 'action'=>$action);
+
+my $initializer = BioMart::Initializer->new( "registryFile" => $confFile, "action" => $action );
 my $registry = $initializer->getRegistry;
+my $query = BioMart::Query->new( "registry" => $registry, "virtualSchemaName" => "default" );
 
-my $query = BioMart::Query->new('registry'=>$registry,'virtualSchemaName'=>'default');
+my @gene_ids;
+while(<>) {
+	chomp;
+	push @gene_ids, $_;
+}
 
-		
-	$query->setDataset("boleracea_eg_gene");
-	$query->addFilter("ensembl_peptide_id", ["Bo9g186210.1"]);
-	$query->addAttribute("ensembl_gene_id");
-	$query->addAttribute("ensembl_transcript_id");
-	$query->addAttribute("go_id");
-	$query->addAttribute("name_1006");
-	$query->addAttribute("definition_1006");
+$query->setDataset("boleracea_eg_gene");
+$query->addFilter("ensembl_gene_id", \@gene_ids);
+$query->addAttribute("go_id");
+$query->addAttribute("name_1006");
+$query->addAttribute("definition_1006");
+$query->addAttribute("namespace_1003");
 
 $query->formatter("TSV");
 
