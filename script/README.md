@@ -34,8 +34,14 @@ biomart.pl $ID1 $ID2 .. $IDn
 
 For any given list of transcript IDs such as may be encountered in the _Brassica oleraceae_ genome annotation 
 to a GO term/name/definition using biomart. To get [the table of terms](go_terms.tsv) associated with the genes 
-that occurred 5 times (the highest number in [genes.txt](genes.txt)), one might do this:
+that occur four or more times, one might do this:
 
 ```shell
-egrep '^\s*5' genes.txt | sed -e 's/      5 //' | biomart.pl > go_terms.tsv
+egrep '^\s*[456]' genes.txt | sed -e 's/      . //' | biomart.pl > go_terms.tsv
+```
+
+And the [table of terms that match 'flower' anywhere](flowering.tsv) is generated like this:
+
+```shell
+grep flower go_terms.tsv > flowering.tsv
 ```
