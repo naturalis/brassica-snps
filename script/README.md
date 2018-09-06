@@ -1,4 +1,4 @@
-Contains data exploration scripts:
+# Contains data exploration scripts and results
 
 ## genes_in_qtlregions.pl
 
