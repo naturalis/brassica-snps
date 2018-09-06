@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 # An example script demonstrating the use of BioMart API.
 # This perl API representation is only available for configuration versions >=  0.5 
 use strict;
