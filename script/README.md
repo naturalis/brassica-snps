@@ -39,3 +39,9 @@ that occur four or more times, one might do this:
 ```shell
 egrep '^\s*[456]' genes.txt | sed -e 's/      . //' | biomart.pl > go_terms.tsv
 ```
+
+And the [table of terms that match 'flower' anywhere](flowering.tsv) is generated like this:
+
+```shell
+grep flower go_terms.tsv > flowering.tsv
+```
