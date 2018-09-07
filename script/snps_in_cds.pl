@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict; 
 use warnings; 
+use Bio::SeqIO;
 use Getopt::Long; 
 use My::Brassica;
 
@@ -12,7 +13,8 @@ while(<>) {
 }
 
 # connect to database
-my $db = '/home/ubuntu/data/reference/sqlite/snps.db'; 
+my $db     = '/home/ubuntu/data/reference/sqlite/snps.db'; 
+my $ref    = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
 my $schema = My::Brassica->connect("dbi:SQLite:$db");
 
 # iterate over gene IDs
@@ -70,4 +72,14 @@ for my $id (@genes) {
 		}
 
 	}
+}
+
+sub get_seq {
+	my %args  = @_;
+	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
+	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
+	my $seq = Bio::SeqIO->new( -string => $fasta, -format => 'fasta' )->next_seq;
+	$seq = $seq->revcom if $args{'strand'} eq '-';
+	$seq = $seq->trunc( $args{'phase'} + 1, $args{'stop'} - $args{'start'} ) if $args{'phase'};
+	return $seq;
 }
