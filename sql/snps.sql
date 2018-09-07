@@ -69,13 +69,13 @@ create table if not exists snps (
 	ad_ref_low integer, -- 35
 	ad_alt_low integer, -- 37
 	dp_low integer, -- 72
-	pl_low text, -- "1253,0,1225"
+--	pl_low text, -- "1253,0,1225"
 	gq_low integer, -- 99
 	snp_index_low real, -- 0.513888888888889
 	ad_ref_high integer, -- 36
 	ad_alt_high integer, -- 33
 	dp_high integer, -- 69
-	pl_high text, -- "1208,0,1404"
+--	pl_high text, -- "1208,0,1404"
 	gq_high integer, -- 99
 	snp_index_high real, -- 0.478260869565217
 	ref_freq real, -- 0.50354609929078
@@ -86,6 +86,7 @@ create table if not exists snps (
 	g_prime real, -- 2.50042210787922
 	p_value real, -- 0.0903783142874682
 	neg_log10_p_value real, -- 1.04393576327565
-	q_value real -- 0.55772879456407
+	q_value real, -- 0.55772879456407
+	contrast text -- AF-LF
 );
 .import snps.tsv snps
