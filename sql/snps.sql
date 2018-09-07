@@ -86,6 +86,7 @@ create table if not exists snps (
 	g_prime real, -- 2.50042210787922
 	p_value real, -- 0.0903783142874682
 	neg_log10_p_value real, -- 1.04393576327565
-	q_value real -- 0.55772879456407
+	q_value real, -- 0.55772879456407
+	contrast text -- AF-LF
 );
 .import snps.tsv snps
