@@ -2,6 +2,7 @@
 use strict; 
 use warnings; 
 use Bio::SeqIO;
+use Bio::Tools::CodonTable;
 use Getopt::Long; 
 use My::Brassica;
 
@@ -12,10 +13,11 @@ while(<>) {
 	push @genes, $_ if /\S/;
 }
 
-# connect to database
+# initialize variables and databases
 my $db     = '/home/ubuntu/data/reference/sqlite/snps.db'; 
 my $ref    = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
 my $schema = My::Brassica->connect("dbi:SQLite:$db");
+my $ctable = Bio::Tools::CodonTable->new();
 
 # iterate over gene IDs
 for my $id (@genes) {
@@ -74,7 +76,18 @@ for my $id (@genes) {
 	}
 }
 
-sub get_seq {
+sub is_nonsyn {
+	my %args = @_;
+	my $raw = $seq->seq;
+	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
+	if ( $exp_ref ne $args{ref} ) {
+		die "Error: $exp_ref != " . $args{ref};
+	}
+	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
+	return $raw eq $seq->seq ? 0 : 1;
+}
+
+sub get_refseq {
 	my %args  = @_;
 	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
 	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
