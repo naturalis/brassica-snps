@@ -1,7 +1,8 @@
 #!/usr/bin/Rscript
 
-# load the package
+# load the packages
 library("QTLseqr")
+library("dplyr")
 
 # Set sample and file names
 HighBulk <- "group-3-LF"
@@ -36,12 +37,15 @@ df_filt <- runGprimeAnalysis(
 	outlierFilter = "deltaSNP"
 )
 
+# write high G' snps to file
+snps <- filter(df_filt, Gprime > 2.5)
+write.csv(snps, file="SNPs-gprime2.5-EF-LF.csv")
+
 # Plot G' results
-pdf("BSA/Gprime.pdf")
-print(plotQTLStats(SNPset = df_filt, var = "Gprime", plotThreshold = TRUE, q = 0.01))
-dev.off()
+plotQTLStats(SNPset = df_filt, var = "Gprime", plotThreshold = TRUE, q = 0.01)
 
 # Run QTLseq analysis
+# XXX popStruc ought to be RIL
 df_filt <- runQTLseqAnalysis(
         SNPset = df_filt,
         windowSize = 1e6,
@@ -52,9 +56,7 @@ df_filt <- runQTLseqAnalysis(
 )
 
 # Plot deltaSNP results
-pdf("BSA/deltaSNP.pdf")
-print(plotQTLStats(SNPset = df_filt, var = "deltaSNP", plotIntervals = TRUE))
-dev.off()
+plotQTLStats(SNPset = df_filt, var = "deltaSNP", plotIntervals = TRUE)
 
 # export summary CSV
 getQTLTable(
