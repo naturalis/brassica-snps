@@ -84,7 +84,7 @@ sub is_nonsyn {
 		die "Error: $exp_ref != " . $args{ref};
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
-	return $raw eq $seq->seq ? 0 : 1;
+	return $ctable->translate($raw) eq $ctable->translate($seq->seq) ? 0 : 1;
 }
 
 sub get_refseq {
