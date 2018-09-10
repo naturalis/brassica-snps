@@ -5,6 +5,7 @@ use Bio::SeqIO;
 use Bio::Tools::CodonTable;
 use Getopt::Long; 
 use My::Brassica;
+use Data::Dumper;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($DEBUG);
 
@@ -99,6 +100,7 @@ for my $id (@genes) {
 					);
 
 					# prepare and print result
+					DEBUG Dumper(\%merged);
 					my $contrast = join ',', @{ $merged{$pos}->{$ref}->{$alt} };
 					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $is_nonsyn, $ref, $alt, $contrast );
 					print join("\t", @result), "\n";
