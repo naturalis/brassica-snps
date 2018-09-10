@@ -7,7 +7,7 @@ use Getopt::Long;
 use My::Brassica;
 use Data::Dumper;
 use Log::Log4perl qw(:easy);
-Log::Log4perl->easy_init($DEBUG);
+Log::Log4perl->easy_init($ERROR);
 
 # process command line arguments
 my @genes;
@@ -126,7 +126,7 @@ sub is_nonsyn {
 	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
 	if ( $exp_ref ne $args{ref} ) {
 		WARN $args{pos}, "\t", $raw;
-		WARN "Error: $exp_ref != " . $args{ref};
+		die "Error: $exp_ref != " . $args{ref};
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
 	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? 'syn' : 'nonsyn';
