@@ -79,24 +79,25 @@ for my $id (@genes) {
 					);
 					
 					# adjust SNP coordinate
+					my $snp_coord;
 					if ( $strand eq '-' ) {
 						# CDS is on '-' strand, count 
 						# backward from 3' location
-						$pos = $end - $pos;
+						$snp_coord = $end - $pos;
 					}
 					else {
 						# CDS is on '+' strand, count
 						# forward relative to CDS start
-						$pos = $pos - $start;
+						$snp_coord = $pos - $start;
 					}
-					$pos -= $phase; # is 0, 1 or 2
+					$snp_coord -= $phase; # is 0, 1 or 2
 					
 					# compute whether synonymous
 					my $is_nonsyn = is_nonsyn(
 						'seq' => $seq,
-						'pos' => $pos,
 						'ref' => $ref,
-						'alt' => $alt,						
+						'alt' => $alt,
+						'pos' => $snp_coord,						
 					);
 
 					# prepare and print result
