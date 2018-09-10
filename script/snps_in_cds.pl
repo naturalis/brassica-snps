@@ -92,11 +92,20 @@ for my $id (@genes) {
 					}
 					$snp_coord -= $phase; # is 0, 1 or 2
 					
+					# revcom $ref & $alt if on '-' strand
+					my ( $cref, $calt ) = ( $ref, $alt );
+					if ( $strand eq '-' ) {
+						$cref =~ tr/ACGT/TGCA/;
+						$calt =~ tr/ACGT/TGCA/;
+						$cref = reverse($cref);
+						$calt = referse($calt);
+					}
+					
 					# compute whether synonymous
 					my $is_nonsyn = is_nonsyn(
 						'seq' => $seq,
-						'ref' => $ref,
-						'alt' => $alt,
+						'ref' => $cref,
+						'alt' => $calt,
 						'pos' => $snp_coord,						
 					);
 
