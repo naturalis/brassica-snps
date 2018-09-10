@@ -120,6 +120,7 @@ sub is_nonsyn {
 sub get_refseq {
 	my %args  = @_;
 	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
+	$chr = "C$chr" if $chr !~ /^C/; # translate chromosome foreign key to FASTA ID
 	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
 	my $seq = Bio::SeqIO->new( -string => $fasta, -format => 'fasta' )->next_seq;
 	
