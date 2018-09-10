@@ -98,7 +98,7 @@ for my $id (@genes) {
 						$cref =~ tr/ACGT/TGCA/;
 						$calt =~ tr/ACGT/TGCA/;
 						$cref = reverse($cref);
-						$calt = referse($calt);
+						$calt = reverse($calt);
 					}
 					
 					# compute whether synonymous
