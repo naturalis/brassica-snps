@@ -101,7 +101,6 @@ for my $id (@genes) {
 					);
 
 					# prepare and print result
-					DEBUG Dumper(\%merged);
 					my $contrast = join ',', @{ $merged{$pos}->{$ref}->{$alt} };
 					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $is_nonsyn, $ref, $alt, $contrast );
 					print join("\t", @result), "\n";
