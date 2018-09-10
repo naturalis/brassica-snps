@@ -64,10 +64,40 @@ for my $id (@genes) {
 		for my $pos ( sort { $a <=> $b } keys %merged ) {
 			for my $ref ( sort { $a cmp $b } keys %{ $merged{$pos} } ) {
 				for my $alt ( sort { $a cmp $b } keys %{ $merged{$pos}->{$ref} } ) {
+				
+					# get coding, in-frame, reference sequence
+					my $seq = get_refseq(
+						'chr'    => $chr,
+						'start'  => $start,
+						'stop'   => $end,
+						'phase'  => $phase,
+						'strand' => $strand,
+					);
+					
+					# adjust SNP coordinate
+					if ( $strand eq '-' ) {
+						# CDS is on '-' strand, count 
+						# backward from 3' location
+						$pos = $end - $pos;
+					}
+					else {
+						# CDS is on '+' strand, count
+						# forward relative to CDS start
+						$pos = $pos - $start;
+					}
+					$pos -= $phase; # is 0, 1 or 2
+					
+					# compute whether synonymous
+					my $is_nonsyn = is_nonsyn(
+						'seq' => $seq,
+						'pos' => $pos,
+						'ref' => $ref,
+						'alt' => $alt,						
+					);
 
 					# prepare and print result
 					my $contrast = join ',', @{ $merged{$pos}->{$ref}->{$alt} };
-					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $ref, $alt, $contrast );
+					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $is_nonsyn, $ref, $alt, $contrast );
 					print join("\t", @result), "\n";
 				}
 			}
@@ -78,13 +108,13 @@ for my $id (@genes) {
 
 sub is_nonsyn {
 	my %args = @_;
-	my $raw = $seq->seq;
+	my $raw = $args{seq}->seq;
 	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
 	if ( $exp_ref ne $args{ref} ) {
 		die "Error: $exp_ref != " . $args{ref};
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
-	return $ctable->translate($raw) eq $ctable->translate($seq->seq) ? 0 : 1;
+	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? 'syn' : 'nonsyn';
 }
 
 sub get_refseq {
@@ -92,7 +122,11 @@ sub get_refseq {
 	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
 	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
 	my $seq = Bio::SeqIO->new( -string => $fasta, -format => 'fasta' )->next_seq;
+	
+	# reverse complement if CDS is on '-' strand
 	$seq = $seq->revcom if $args{'strand'} eq '-';
+	
+	# truncate sequence if there is a phase offset
 	$seq = $seq->trunc( $args{'phase'} + 1, $args{'stop'} - $args{'start'} ) if $args{'phase'};
 	return $seq;
 }
