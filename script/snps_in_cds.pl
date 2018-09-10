@@ -5,6 +5,8 @@ use Bio::SeqIO;
 use Bio::Tools::CodonTable;
 use Getopt::Long; 
 use My::Brassica;
+use Log::Log4perl qw(:easy);
+Log::Log4perl->easy_init($DEBUG);
 
 # process command line arguments
 my @genes;
@@ -36,6 +38,7 @@ for my $id (@genes) {
 		my $strand = $cds->strand;
 
 		# search SNPs
+		DEBUG "Fetching SNPs for ${id}, CDS C${chr}:${start}..${end}, ${strand}-strand, $offset ${phase}";
 		my $snps = $schema->resultset("Snp")->search({
 			chromosome_id => $chr,
 			position => { '>=' => $start, '<=' => $end },
@@ -111,7 +114,7 @@ sub is_nonsyn {
 	my $raw = $args{seq}->seq;
 	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
 	if ( $exp_ref ne $args{ref} ) {
-		warn $args{pos}, "\t", $raw;
+		WARN $args{pos}, "\t", $raw;
 		die "Error: $exp_ref != " . $args{ref};
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
@@ -123,7 +126,13 @@ sub get_refseq {
 	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
 	$chr = "C$chr" if $chr !~ /^C/; # translate chromosome foreign key to FASTA ID
 	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
-	my $seq = Bio::SeqIO->new( -string => $fasta, -format => 'fasta' )->next_seq;
+	DEBUG $fasta;
+	
+	# parse raw FASTA
+	my $seq = Bio::SeqIO->new( 
+		'-string' => $fasta, 
+		'-format' => 'fasta',
+	)->next_seq;
 	
 	# reverse complement if CDS is on '-' strand
 	$seq = $seq->revcom if $args{'strand'} eq '-';
