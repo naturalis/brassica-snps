@@ -111,6 +111,7 @@ sub is_nonsyn {
 	my $raw = $args{seq}->seq;
 	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
 	if ( $exp_ref ne $args{ref} ) {
+		warn $args{pos}, "\t", $raw;
 		die "Error: $exp_ref != " . $args{ref};
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
