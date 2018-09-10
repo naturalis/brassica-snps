@@ -38,7 +38,7 @@ for my $id (@genes) {
 		my $strand = $cds->strand;
 
 		# search SNPs
-		DEBUG "Fetching SNPs for ${id}, CDS C${chr}:${start}..${end}, ${strand}-strand, $offset ${phase}";
+		DEBUG "Fetching SNPs for ${id}, CDS C${chr}:${start}..${end}, ${strand}-strand, offset ${phase}";
 		my $snps = $schema->resultset("Snp")->search({
 			chromosome_id => $chr,
 			position => { '>=' => $start, '<=' => $end },
