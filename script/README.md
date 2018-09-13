@@ -60,3 +60,18 @@ get the [table of SNPs](snps.tsv), one might do this:
 ```shell
 egrep '^\s*[456]' genes.txt | sed -e 's/      . //' | snps_in_cds.pl > snps.tsv
 ```
+To get a list of UniProtKB identifiers (used for [GO enrichment tests](http://bioinfo.cau.edu.cn/agriGO)), one 
+might do this:
+
+```shell
+for C in $CONTRASTS; do
+   # 1. only get the SNPs associated with the focal contrast $C
+   # 2. only get the nonsynonymous SNPs
+   # 3. retain the column with transcript IDs (first column)
+   # 4. sort | uniq => retain distinct IDs
+   # 5. lookup the UniProtKB ids and go terms via biomart
+   # 6. retain the column with UniProtKB ids (second column)
+   # 7. sort | uniq => retain distinct IDs
+   # 8. filter out the header and write to file 
+   grep $C snps.tsv | grep nonsyn | cut -f1 | sort | uniq | biomart.pl | cut -f2 | sort | uniq | grep -v UniProtKB > ${C}.txt
+done
