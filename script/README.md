@@ -45,3 +45,18 @@ And the [table of terms that match 'flower' anywhere](flowering.tsv) is generate
 ```shell
 grep flower go_terms.tsv > flowering.tsv
 ```
+## snps_in_cds.pl
+
+Usage:
+
+```shell
+snps_in_cds.pl $ID1 $ID2 .. $IDn
+```
+
+For any given list of transcript IDs such as may be encountered in the _Brassica oleraceae_ genome annotation,
+look up which SNPs occur in coding sequences. For those SNPs, look up whether these are synonymous or not. To 
+get the [table of SNPs](snps.tsv), one might do this:
+
+```shell
+egrep '^\s*[456]' genes.txt | sed -e 's/      . //' | snps_in_cds.pl > snps.tsv
+```
