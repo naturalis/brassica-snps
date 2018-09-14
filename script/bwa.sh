@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # reference genome, only mapping against chromosomes
-# REF=./reference/Brassica_oleracea.v2.1.dna.toplevel.fa.gz
 REF=./reference/Brassica_oleracea.v2.1.dna.toplevel.chromosomes.fa
 
 # these are prefixes, add the suffixes below in an inner loop
@@ -19,19 +18,7 @@ for SAMPLE in $SAMPLES; do
 	# parse sample ID out of location string
 	SM=`echo ${SAMPLE} | cut -f 3 -d '/'`
 
-	# deduplicate the reads: unzip, dedup, rezip
-#	gunzip ${SAMPLE}_R1.fastq.gz ${SAMPLE}_R2.fastq.gz
-#	fastuniq -i ${SAMPLE}_R1.fastq ${SAMPLE}_R2.fastq -t q -o ${SAMPLE}_R1.dedup.fastq -p ${SAMPLE}_R2.dedup.fastq
-#	gzip -9 ${SAMPLE}_R1.fastq ${SAMPLE}_R2.fastq ${SAMPLE}_R1.dedup.fastq ${SAMPLE}_R2.dedup.fastq
-#	ParDRe \
-#		-i ${SAMPLE}_R1.fastq.gz \
-#		-p ${SAMPLE}_R2.fastq.gz \
-#		-o ${SAMPLE}_R1.fastq.dedup.gz \
-#		-r ${SAMPLE}_R2.fastq.dedup.gz \
-#		-t 16 \
-#		-z 9
-
-	# do the mapping
+	# do the mapping, include the @RG field to identify samples when merging
 	bwa mem \
 		-R "@RG\tID:NA\tSM:${SM}\tPL:ILLUMINA\tPI:NA" \
 		-t ${THREADS} \
