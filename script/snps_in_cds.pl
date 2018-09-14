@@ -9,6 +9,25 @@ use Data::Dumper;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($ERROR);
 
+=pod
+
+Given a list of EnsEMBL gene IDs, provided on STDIN line by line, looks for SNPs within
+CDSs of these genes. The output is a tab-separated table with the following columns:
+
+- gene ID
+- chromosome number
+- start coordinate of the CDS
+- stop coordinate of the CDS
+- codon phase
+- strand
+- SNP position
+- syn/nonsyn
+- reference allele
+- alternative allele
+- contrasts in which the SNP occurs
+
+=cut
+
 # process command line arguments
 my @genes;
 while(<>) {
