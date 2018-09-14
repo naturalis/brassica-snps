@@ -4,6 +4,20 @@ use warnings;
 use Getopt::Long;
 use My::Brassica;
 
+=pod
+
+Given a provided contrast, e.g. EF-LF, produces a table of EnsEMBL gene IDs of genes that
+occur within the QTL regions identified in the analysis of this contrast. The table has
+the following columns:
+
+- chromosome number
+- gene's start coordinate
+- end coordinate
+- gene ID
+- provided contrast
+
+=cut
+
 # process command line arguments
 my $db = '/home/ubuntu/data/reference/sqlite/snps.db';
 my $contrast = 'EF-LF';
