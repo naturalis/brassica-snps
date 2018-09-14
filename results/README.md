@@ -60,6 +60,25 @@ for C in $CONTRASTS; do
    # 8. filter out the header and write to file 
    grep $C snps.tsv | grep nonsyn | cut -f1 | sort | uniq | biomart.pl | cut -f2 | sort | uniq | grep -v UniProtKB > ${C}/uniprot.txt
 done
+```
 
 > Now go into one of the subtended folders and read the readme therein for the next steps
+
+## Intersection among contrasts
+
+Using the web application here: http://bioinformatics.psb.ugent.be/webtools/Venn/
+
+And the third column (i.e. the GO term name) in the `*/enriched_GO_0003006.tsv`, the
+following Venn diagram was produced:
+
+![](venn_result19491.png)
+
+| Names                         | total | elements                                                               |
+|-------------------------------|-------|------------------------------------------------------------------------|
+| EF-LF EF-NF IF-LF IF-NF LF-NF	| 1     | vegetative to reproductive phase transition of meristem                |
+| EF-LF EF-NF IF-LF IF-NF       | 2     | seed maturation, seed dormancy                                         |
+| EF-LF EF-NF IF-NF LF-NF       | 3     | flower development, floral whorl development, floral organ development |
+| EF-LF EF-NF IF-NF             | 2     | floral organ morphogenesis, floral organ formation                     |
+| EF-LF EF-NF                   | 1     | ovule development                                                      |
+| EF-LF                         | 3     | stamen development, androecium development, carpel development         |
 
