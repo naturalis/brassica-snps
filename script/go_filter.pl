@@ -4,6 +4,21 @@ use warnings;
 use Getopt::Long;
 use GO::OntologyProvider::OboParser;
 
+=pod
+
+This script filters the records in the $infile to retain only those lines where the
+listed GO term's enrichment: 
+
+- has a significance level of <= $pval (default 0.05)
+- belongs to the defined GO $section (default biological_process, P)
+- is subtended by the provided $term (default GO:0003006 reproductive developmental process)
+
+In addition, the script needs to full GO, in OBO format.
+
+The input file is produced by the enrichment test at: http://bioinfo.cau.edu.cn/agriGO
+
+=cut
+
 # process command line arguments
 my $infile;
 my $term = 'GO:0003006'; # reproductive developmental process
