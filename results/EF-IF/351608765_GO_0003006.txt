@@ -1,0 +1,1 @@
+GO_acc	term_type	Term	queryitem	querytotal	bgitem	bgtotal	pvalue	FDR	entries
