@@ -18,7 +18,8 @@ for SAMPLE in $SAMPLES; do
 	# parse sample ID out of location string
 	SM=`echo ${SAMPLE} | cut -f 3 -d '/'`
 
-	# do the mapping, include the @RG field to identify samples when merging
+	# do the mapping, include the @RG tag to identify samples when merging
+	# XXX this tag is important for the subsequent GATK operations and the R script
 	bwa mem \
 		-R "@RG\tID:NA\tSM:${SM}\tPL:ILLUMINA\tPI:NA" \
 		-t ${THREADS} \
