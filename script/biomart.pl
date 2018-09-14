@@ -7,6 +7,21 @@ use BioMart::Initializer;
 use BioMart::Query;
 use BioMart::QueryRunner;
 
+=pod
+
+Given lines of gene IDs (from the EnsEMBL Brassica oleracea genome annotation) provided on 
+STDIN, do a lookup in BioMart. The result is a tab separated table with the following
+columns:
+
+- the input gene ID
+- the UniProtKB identifier that corresponds to the gene product
+- a GO term ID with which the UniProtKB record is annotated
+- the GO term name
+- the GO term definition
+- the upper level category in the GO (e.g. biological process)
+
+=cut
+
 my $confFile = "/usr/local/src/biomart-perl/conf/martURLLocation.xml";
 
 # NB: change action to 'clean' if you wish to start a fresh configuration  
