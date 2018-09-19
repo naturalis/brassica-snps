@@ -40,20 +40,20 @@ while( my $r = $regions->next ) {
 	my $end   = $r->end;
 
 	# QTL:     |--------| 
-	# FEAT:       ***
-	my $inside = $schema->resultset("Feature")->search({
-		'chromosome_id' => $chr,
-		'feat_start'    => { '>=' => $start },
-		'feat_end'      => { '<=' => $end },
-		'feature_type'  => "gene"
-	});
-	
-	# QTL:     |--------| 
 	# FEAT:   ***
 	my $straddle_begin = $schema->resultset("Feature")->search({
 		'chromosome_id' => $chr,
 		'feat_start'    => { '<' => $start },
 		'feat_end'      => { '>' => $start },
+		'feature_type'  => "gene"
+	});
+
+	# QTL:     |--------| 
+	# FEAT:       ***
+	my $inside = $schema->resultset("Feature")->search({
+		'chromosome_id' => $chr,
+		'feat_start'    => { '>=' => $start },
+		'feat_end'      => { '<=' => $end },
 		'feature_type'  => "gene"
 	});
 		
