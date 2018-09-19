@@ -39,12 +39,32 @@ while( my $r = $regions->next ) {
 	my $end   = $r->end;
 
 	# query features
-	my $features = $schema->resultset("Feature")->search({ 
-		'chromosome_id' => $chr,
-		'feat_start'    => { '>' => $start },
-		'feat_end'      => { '<' => $end },
-		'feature_type'  => "gene"
-	});
+	my $features = $schema->resultset("Feature")->search([
+		# QTL:     |--------| 
+		# FEAT:       ***
+		{
+			'chromosome_id' => $chr,
+			'feat_start'    => { '>=' => $start },
+			'feat_end'      => { '<=' => $end },
+			'feature_type'  => "gene"
+		},
+		# QTL:     |--------| 
+		# FEAT:   ***
+		{
+			'chromosome_id' => $chr,
+			'feat_start'    => { '<' => $start },
+			'feat_end'      => { '>' => $start },
+			'feature_type'  => "gene"
+		},
+		# QTL:     |--------| 
+		# FEAT:            ***		
+		{
+			'chromosome_id' => $chr,
+			'feat_start'    => { '<' => $end },
+			'feat_end'      => { '>' => $end },
+			'feature_type'  => "gene"
+		},		
+	]);
 	while( my $f = $features->next ) {
 		my $att = $f->attributes;
 		if ( $att =~ m/ID=gene:([^;]+)/ ) {
