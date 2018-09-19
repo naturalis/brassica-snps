@@ -20,10 +20,12 @@ the following columns:
 
 # process command line arguments
 my $db = '/home/ubuntu/data/reference/sqlite/snps.db';
+my $contrast;
 GetOptions(
 	'db=s'       => \$db,
 	'contrast=s' => \$contrast,
 );
+die "Usage: $0 -c <contrast> [-d <db>]" if not $contrast;
 
 # connect to database
 my $schema = My::Brassica->connect("dbi:SQLite:$db");
