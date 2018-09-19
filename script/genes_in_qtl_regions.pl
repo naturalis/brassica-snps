@@ -69,7 +69,7 @@ while( my $r = $regions->next ) {
 			my $att = $f->attributes;
 			if ( $att =~ m/ID=gene:([^;]+)/ ) {
 				my $id = $1;
-				print join("\t", $chr, $start, $end, $id, $contrast), "\n";
+				print join("\t", $chr, $start, $end, $id, $f->feat_start, $f->feat_end, $contrast), "\n";
 			}
 		}
 	}
