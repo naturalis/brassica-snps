@@ -4,10 +4,16 @@
 library("QTLseqr")
 library("dplyr")
 
+# possible bulks:
+# - group-1-EF
+# - group-2-IF
+# - group-3-LF
+# - group-5-NF
+
 # Set sample and file names
-HighBulk <- "group-3-LF"
+HighBulk <- "group-2-IF"
 LowBulk <- "group-1-EF"
-file <- "BSA/SNPs_from_GATK.table"
+file <- "SNPs_from_GATK-EF-IF.table"
 
 # Choose which chromosomes will be included in the analysis (i.e. exclude smaller contigs)
 Chroms <- paste0(rep("C", 9), 1:9)
@@ -49,7 +55,7 @@ plotQTLStats(SNPset = df_filt, var = "Gprime", plotThreshold = TRUE, q = 0.01)
 df_filt <- runQTLseqAnalysis(
         SNPset = df_filt,
         windowSize = 1e6,
-        popStruc = "F2",
+        popStruc = "RIL",
         bulkSize = c(11, 11),
         replications = 10000,
         intervals = c(95, 99)
@@ -63,5 +69,5 @@ getQTLTable(
 	SNPset = df_filt, 
 	alpha = 0.01, 
 	export = TRUE, 
-	fileName = "BSA/my_BSA_QTL.csv"
+	fileName = "SNPs-gprime-filtered-EF-IF.csv"
 )
