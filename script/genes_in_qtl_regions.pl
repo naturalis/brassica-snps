@@ -20,7 +20,6 @@ the following columns:
 
 # process command line arguments
 my $db = '/home/ubuntu/data/reference/sqlite/snps.db';
-my $contrast = 'EF-LF';
 GetOptions(
 	'db=s'       => \$db,
 	'contrast=s' => \$contrast,
