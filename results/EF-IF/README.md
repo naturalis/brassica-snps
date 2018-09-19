@@ -2,7 +2,7 @@
 
 ![G' prime](gprime.png)
 
-A list of UniProtKB identifiers of genes that were in the [QTL regions](QTL-regions.tsv) 
+A list of UniProtKB identifiers of genes that were in the QTL regions 
 of the contrast shown here that contained nonsynonymous SNPs. To be precise, the SNPs
 are filtered on G' >= 2.5, as opposed to the benchmark value determined for the focal
 contrast.
