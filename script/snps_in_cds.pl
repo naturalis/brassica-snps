@@ -120,8 +120,9 @@ for my $id (@genes) {
 						$calt = reverse($calt);
 					}
 					
-					# compute whether synonymous
-					my $is_nonsyn = is_nonsyn(
+					# compute whether synonymous and whether observed
+					# reference allele matches the expectation
+					my ( $is_nonsyn, $exp ) = is_nonsyn(
 						'seq' => $seq,
 						'ref' => $cref,
 						'alt' => $calt,
@@ -130,7 +131,7 @@ for my $id (@genes) {
 
 					# prepare and print result
 					my $contrast = join ',', @{ $merged{$pos}->{$ref}->{$alt} };
-					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $is_nonsyn, $ref, $alt, $contrast );
+					my @result = ( $id, $chr, $start, $end, $phase, $strand, $pos, $is_nonsyn, $ref, $alt, $exp, $contrast );
 					print join("\t", @result), "\n";
 				}
 			}
@@ -143,12 +144,14 @@ sub is_nonsyn {
 	my %args = @_;
 	my $raw = $args{seq}->seq;
 	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
+	my $retval = '=';
 	if ( $exp_ref ne $args{ref} ) {
 		WARN $args{pos}, "\t", $raw;
 		ERROR "Error: $exp_ref != " . $args{ref};
+		$retval = '!';
 	}
 	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
-	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? 'syn' : 'nonsyn';
+	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? ( 'syn', $retval ) : ( 'nonsyn', $retval );
 }
 
 sub get_refseq {
