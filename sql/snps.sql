@@ -91,3 +91,4 @@ create table if not exists snps (
 	contrast text -- AF-LF
 );
 .import snps.tsv snps
+create index snp_location_idx on snps(chromosome_id,position);
