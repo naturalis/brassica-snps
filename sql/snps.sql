@@ -59,6 +59,7 @@ create table if not exists qtl_regions (
 	bsa_contrast text
 );
 .import qtl_regions.tsv qtl_regions
+create index bsa_contrast_idx on qtl_regions(bsa_contrast);
 
 create table if not exists snps ( 
 	snp_id integer constraint snp_pk primary key asc autoincrement, -- 1
