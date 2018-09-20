@@ -70,14 +70,16 @@ Using the web application here: http://bioinformatics.psb.ugent.be/webtools/Venn
 And the third column (i.e. the GO term name) in the `*/enriched_GO_0003006.tsv`, the
 following Venn diagram was produced:
 
-![](venn_result19491.png)
+![](venn.png)
 
-| Names                         | total | elements                                                               |
-|-------------------------------|-------|------------------------------------------------------------------------|
-| EF-LF EF-NF IF-LF IF-NF LF-NF	| 1     | vegetative to reproductive phase transition of meristem                |
-| EF-LF EF-NF IF-LF IF-NF       | 2     | seed maturation, seed dormancy                                         |
-| EF-LF EF-NF IF-NF LF-NF       | 3     | flower development, floral whorl development, floral organ development |
-| EF-LF EF-NF IF-NF             | 2     | floral organ morphogenesis, floral organ formation                     |
-| EF-LF EF-NF                   | 1     | ovule development                                                      |
-| EF-LF                         | 3     | stamen development, androecium development, carpel development         |
-
+| Names | total | elements |
+|-------|-------|----------|
+| EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF | 3 | floral organ morphogenesis, floral organ formation, seed maturation |
+| EF-IF EF-LF EF-NF IF-NF LF-NF | 1 | vegetative to reproductive phase transition of meristem |
+| EF-IF EF-LF IF-LF IF-NF LF-NF | 1 | seed dormancy |
+| EF-IF EF-LF EF-NF LF-NF | 2 | flower calyx development, sepal development |
+| EF-IF EF-LF IF-LF LF-NF | 1 | petal morphogenesis |
+| EF-LF EF-NF IF-LF IF-NF | 1 | floral organ development |
+| EF-LF EF-NF IF-NF LF-NF | 2 | corolla development, petal development |
+| EF-LF EF-NF IF-NF | 1 | floral whorl development |
+| IF-LF | 1 | flower morphogenesis |
