@@ -8,7 +8,7 @@ are filtered on G' >= 2.5, as opposed to the benchmark value determined for the 
 contrast.
 
 The list of UniProtKB identifiers is used for the online GO term enrichment test here: 
-http://bioinfo.cau.edu.cn/agriGO
+http://bioinfo.cau.edu.cn/agriGO (session: 283547849)
 
 ## [enriched.tsv](enriched.tsv)
 
