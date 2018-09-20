@@ -83,19 +83,19 @@ for my $id (@genes) {
 
 		}
 
+		# get coding, in-frame, reference sequence
+		my $seq = get_refseq(
+			'chr'    => $chr,
+			'start'  => $start,
+			'stop'   => $end,
+			'phase'  => $phase,
+			'strand' => $strand,
+		);
+
 		# navigate data structure
 		POS: for my $pos ( sort { $a <=> $b } keys %merged ) {
 			REF: for my $ref ( sort { $a cmp $b } keys %{ $merged{$pos} } ) {
-				ALT: for my $alt ( sort { $a cmp $b } keys %{ $merged{$pos}->{$ref} } ) {
-				
-					# get coding, in-frame, reference sequence
-					my $seq = get_refseq(
-						'chr'    => $chr,
-						'start'  => $start,
-						'stop'   => $end,
-						'phase'  => $phase,
-						'strand' => $strand,
-					);
+				ALT: for my $alt ( sort { $a cmp $b } keys %{ $merged{$pos}->{$ref} } ) {				
 					
 					# adjust SNP coordinate
 					my $snp_coord;
