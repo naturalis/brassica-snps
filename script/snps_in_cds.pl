@@ -48,7 +48,7 @@ for my $id (@genes) {
 	my $cdss = $schema->resultset("Feature")->search({ attributes => { LIKE => "%ID=CDS:$id.%" } });
 
 	# iterate over CDS features
-	while( my $cds = $cdss->next ) {
+	CDS: while( my $cds = $cdss->next ) {
 
 		# get coordinates
 		my $chr    = $cds->chromosome_id;
@@ -84,13 +84,21 @@ for my $id (@genes) {
 		}
 
 		# get coding, in-frame, reference sequence
-		my $seq = get_refseq(
-			'chr'    => $chr,
-			'start'  => $start,
-			'stop'   => $end,
-			'phase'  => $phase,
-			'strand' => $strand,
-		);
+		my $seq;
+		eval {
+			$seq = get_refseq(
+				'chr'    => $chr,
+				'start'  => $start,
+				'stop'   => $end,
+				'phase'  => $phase,
+				'strand' => $strand,
+			);
+		};
+		if ( $@ ) {
+			ERROR "Problem extracting ${chr}[${strand}]:${start}..${end} (phase: ${phase})";
+			ERROR $@;
+			next CDS;
+		}
 
 		# navigate data structure
 		POS: for my $pos ( sort { $a <=> $b } keys %merged ) {
