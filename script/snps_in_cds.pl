@@ -171,8 +171,15 @@ sub is_nonsyn {
 	# allele cannot be nonsynonymous if we've moved upstream outside of the phased CDS
 	return if $pos < 0;
 	
+	# Compute length so that we don't go outside of the phased CDS
+	my $length = length($args{ref});
+	if ( ( $length + $pos ) > length($raw) ) {
+		$length = length($raw) - $pos;
+	}
+	
 	# extract observed allele
-	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); 
+	my $obs_ref = substr( $raw, $pos, $length ); 
+	my $exp_ref = substr( $args{ref}, 0, $length );
 	
 	# allele cannot be nonsynonymous if we've moved downstream outside of the phased CDS
 	return unless $obs_ref;
@@ -181,13 +188,13 @@ sub is_nonsyn {
 	# the reference genome matches the expected from GATK; '!' means there is
 	# a mismatch.
 	my $retval = '=';
-	if ( $obs_ref ne $args{ref} ) {
-		ERROR "Error: $obs_ref != " . $args{ref} . " (relative position: $pos)";
+	if ( $obs_ref ne $exp_ref ) {
+		ERROR "Error: $obs_ref != $exp_ref (relative position: $pos)";
 		$retval = '!';
 	}
 	
 	# replace the reference allele with the alternative and test for synonymy
-	substr( $raw, $pos, length($args{ref}), $args{alt} );
+	substr( $raw, $pos, $length, $args{alt} );
 	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? ( 'syn', $retval ) : ( 'nonsyn', $retval );
 }
 
