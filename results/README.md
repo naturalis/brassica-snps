@@ -36,13 +36,14 @@ The columns in the table are as follows:
 - snp location
 - syn/nonsyn
 - reference allele
-- alternative allele
-- contrasts in which the allele occurs
+- comma-seprated list of alternative allele(s), usually only a single SNP, though
+- whether the reference SNP matches the sequence at the location in the genome (so, should always be '=')
+- comma-separated list of contrasts in which the allele occurs
 
 This table is produced thusly:
 
 ```shell
-egrep '^\s*[456]' genes.txt | sed -e 's/      . //' | snps_in_cds.pl > snps.tsv
+sed -e 's/      . //' genes.txt | snps_in_cds.pl > snps.tsv
 ```
 
 From this file, lists of UniProtKB identifiers (used for 
