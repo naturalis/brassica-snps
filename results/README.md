@@ -74,7 +74,7 @@ following Venn diagram was produced:
 
 | Names | total | elements |
 |-------|-------|----------|
-| EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF | 3 | floral organ morphogenesis, floral organ formation, seed maturation |
+| EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF | 3 | floral organ morphogenesis, *floral organ formation*, seed maturation |
 | EF-IF EF-LF EF-NF IF-NF LF-NF | 1 | vegetative to reproductive phase transition of meristem |
 | EF-IF EF-LF IF-LF IF-NF LF-NF | 1 | seed dormancy |
 | EF-IF EF-LF EF-NF LF-NF | 2 | flower calyx development, sepal development |
