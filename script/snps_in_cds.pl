@@ -84,9 +84,9 @@ for my $id (@genes) {
 		}
 
 		# navigate data structure
-		for my $pos ( sort { $a <=> $b } keys %merged ) {
-			for my $ref ( sort { $a cmp $b } keys %{ $merged{$pos} } ) {
-				for my $alt ( sort { $a cmp $b } keys %{ $merged{$pos}->{$ref} } ) {
+		POS: for my $pos ( sort { $a <=> $b } keys %merged ) {
+			REF: for my $ref ( sort { $a cmp $b } keys %{ $merged{$pos} } ) {
+				ALT: for my $alt ( sort { $a cmp $b } keys %{ $merged{$pos}->{$ref} } ) {
 				
 					# get coding, in-frame, reference sequence
 					my $seq = get_refseq(
@@ -164,7 +164,7 @@ sub is_nonsyn {
 	my $retval = '=';
 	if ( $obs_ref ne $args{ref} ) {
 		WARN $args{pos}, "\t", $raw;
-		ERROR "Error: $obs_ref != " . $args{ref};
+		ERROR "Error: $obs_ref != " . $args{ref} . " absolute pos=".$args{pos}." relative=$pos";
 		$retval = '!';
 	}
 	
