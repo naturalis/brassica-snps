@@ -126,7 +126,8 @@ for my $id (@genes) {
 						'seq' => $seq,
 						'ref' => $cref,
 						'alt' => $calt,
-						'pos' => $snp_coord,						
+						'pos' => $snp_coord,
+						'str' => $strand,
 					);
 
 					# prepare and print result
@@ -143,14 +144,32 @@ for my $id (@genes) {
 sub is_nonsyn {
 	my %args = @_;
 	my $raw = $args{seq}->seq;
-	my $exp_ref = substr( $raw, $args{pos}, length($args{ref}) );
+	
+	# Compute starting position differently depending on forward or reverse 
+	# strand: we need to go upstream for the the reverse strand.
+	my $pos = $args{pos};
+	if ( $args{str} eq '-' ) {
+	
+		# on the '-' strand the start coordinate for alleles needs to
+		# be adjusted, but using 0-based indexing. I.e. this has no
+		# effect for alleles of 1bp length, which is nearly all of them.
+		my $l = length($args{ref}) - 1;
+		$pos -= $l;
+	}
+	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); # observed allele
+	
+	# the $retval is a switch where '=' means the observed allele extracted from
+	# the reference genome matches the expected from GATK; '!' means there is
+	# a mismatch.
 	my $retval = '=';
-	if ( $exp_ref ne $args{ref} ) {
+	if ( $obs_ref ne $args{ref} ) {
 		WARN $args{pos}, "\t", $raw;
-		ERROR "Error: $exp_ref != " . $args{ref};
+		ERROR "Error: $obs_ref != " . $args{ref};
 		$retval = '!';
 	}
-	substr( $raw, $args{pos}, length($args{ref}), $args{alt} );
+	
+	# replace the reference allele with the alternative and test for synonymy
+	substr( $raw, $pos, length($args{ref}), $args{alt} );
 	return $ctable->translate($raw) eq $ctable->translate($args{seq}->seq) ? ( 'syn', $retval ) : ( 'nonsyn', $retval );
 }
 
