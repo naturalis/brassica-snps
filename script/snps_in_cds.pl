@@ -129,6 +129,9 @@ for my $id (@genes) {
 						'pos' => $snp_coord,
 						'str' => $strand,
 					);
+					
+					# if there's no return values there's nothing to report
+					next ALT unless $is_nonsyn;
 
 					# prepare and print result
 					my $contrast = join ',', @{ $merged{$pos}->{$ref}->{$alt} };
@@ -157,10 +160,8 @@ sub is_nonsyn {
 		$pos -= $l;
 	}
 	
-	# emit error if we've moved outside of the phased CDS
-	if ( $pos < 0 ) {
-		ERROR "Relative position $pos < 0";
-	}
+	# allele cannot be nonsynonymous if we've moved upstream outside of the phased CDS
+	return if $pos < 0;
 	
 	# extract observed allele
 	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); 
