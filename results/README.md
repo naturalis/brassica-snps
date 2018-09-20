@@ -65,7 +65,7 @@ done
 
 ## Intersection among contrasts
 
-Using the web application here: http://bioinformatics.psb.ugent.be/webtools/Venn/
+Using the web application here: http://www.interactivenn.net/index2.html
 
 And the third column (i.e. the GO term name) in the `*/enriched_GO_0003006.tsv`, the
 following Venn diagram was produced:
