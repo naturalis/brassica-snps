@@ -20,11 +20,12 @@ the following columns:
 
 # process command line arguments
 my $db = '/home/ubuntu/data/reference/sqlite/snps.db';
-my $contrast = 'EF-LF';
+my $contrast;
 GetOptions(
 	'db=s'       => \$db,
 	'contrast=s' => \$contrast,
 );
+die "Usage: $0 -c <contrast> [-d <db>]" if not $contrast;
 
 # connect to database
 my $schema = My::Brassica->connect("dbi:SQLite:$db");
@@ -38,18 +39,40 @@ while( my $r = $regions->next ) {
 	my $start = $r->start;
 	my $end   = $r->end;
 
-	# query features
-	my $features = $schema->resultset("Feature")->search({ 
+	# QTL:     |--------| 
+	# FEAT:   ***
+	my $straddle_begin = $schema->resultset("Feature")->search({
 		'chromosome_id' => $chr,
-		'feat_start'    => { '>' => $start },
-		'feat_end'      => { '<' => $end },
+		'feat_start'    => { '<' => $start },
+		'feat_end'      => { '>' => $start },
 		'feature_type'  => "gene"
 	});
-	while( my $f = $features->next ) {
-		my $att = $f->attributes;
-		if ( $att =~ m/ID=gene:([^;]+)/ ) {
-			my $id = $1;
-			print join("\t", $chr, $start, $end, $id, $contrast), "\n";
+
+	# QTL:     |--------| 
+	# FEAT:       ***
+	my $inside = $schema->resultset("Feature")->search({
+		'chromosome_id' => $chr,
+		'feat_start'    => { '>=' => $start },
+		'feat_end'      => { '<=' => $end },
+		'feature_type'  => "gene"
+	});
+		
+	# QTL:     |--------| 
+	# FEAT:            ***		
+	my $straddle_end = $schema->resultset("Feature")->search({
+		'chromosome_id' => $chr,
+		'feat_start'    => { '<' => $end },
+		'feat_end'      => { '>' => $end },
+		'feature_type'  => "gene"
+	});
+	
+	for my $rs ( $inside, $straddle_begin, $straddle_end ) {
+		while( my $f = $rs->next ) {
+			my $att = $f->attributes;
+			if ( $att =~ m/ID=gene:([^;]+)/ ) {
+				my $id = $1;
+				print join("\t", $chr, $start, $end, $id, $f->feat_start, $f->feat_end, $contrast), "\n";
+			}
 		}
-	}		
+	}
 }
