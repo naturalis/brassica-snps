@@ -83,3 +83,12 @@ following Venn diagram was produced:
 | EF-LF EF-NF IF-NF LF-NF | 2 | corolla development, petal development |
 | EF-LF EF-NF IF-NF | 1 | floral whorl development |
 | IF-LF | 1 | flower morphogenesis |
+
+This suggests that `floral organ formation` is the key term, shared by all contrasts. To get the
+list of UniProtKB identifiers annotation with these terms we can extract them as follows:
+
+```shell
+grep 'floral organ formation' */enriched_GO_0003006.tsv | cut -f10 | sed -e 's: *// :,:g' | tr , '\n' | sort | uniq
+```
+
+Resulting in the file [uniprot.txt](uniprot.txt).
