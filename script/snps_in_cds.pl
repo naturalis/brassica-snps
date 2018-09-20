@@ -174,6 +174,9 @@ sub is_nonsyn {
 	# extract observed allele
 	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); 
 	
+	# allele cannot be nonsynonymous if we've moved downstream outside of the phased CDS
+	return unless $obs_ref;
+	
 	# the $retval is a switch where '=' means the observed allele extracted from
 	# the reference genome matches the expected from GATK; '!' means there is
 	# a mismatch.
