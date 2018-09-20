@@ -156,15 +156,21 @@ sub is_nonsyn {
 		my $l = length($args{ref}) - 1;
 		$pos -= $l;
 	}
-	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); # observed allele
+	
+	# emit error if we've moved outside of the phased CDS
+	if ( $pos < 0 ) {
+		ERROR "Relative position $pos < 0";
+	}
+	
+	# extract observed allele
+	my $obs_ref = substr( $raw, $pos, length($args{ref}) ); 
 	
 	# the $retval is a switch where '=' means the observed allele extracted from
 	# the reference genome matches the expected from GATK; '!' means there is
 	# a mismatch.
 	my $retval = '=';
 	if ( $obs_ref ne $args{ref} ) {
-		WARN $args{pos}, "\t", $raw;
-		ERROR "Error: $obs_ref != " . $args{ref} . " absolute pos=".$args{pos}." relative=$pos";
+		ERROR "Error: $obs_ref != " . $args{ref} . " (relative position: $pos)";
 		$retval = '!';
 	}
 	
