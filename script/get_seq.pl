@@ -27,7 +27,7 @@ my $ctable = Bio::Tools::CodonTable->new();
 my $cdss = $schema->resultset("Feature")->search({ attributes => { LIKE => "%ID=CDS:$id.%" } });
 
 # store reference and alternative sequence segments here
-my ( @ref, @alt )
+my ( @ref, @alt );
 
 # iterate over CDS features
 while( my $cds = $cdss->next ) {
