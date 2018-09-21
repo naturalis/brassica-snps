@@ -10,4 +10,5 @@
 8. [biomart.pl](biomart.pl) - get UniProtKB IDs for gene IDs
 9. [go_filter.pl](go_filter.pl) - filter enrichment test results
 10. [qtl_regions_for_gene.pl](qtl_regions_for_gene.pl) - get QTL regions in which the gene ID occurs
-11. [get_intervals.pl](get_intervals.pl) - get genomic coordinate(s) for the stable feature ID
+11. [get_intervals.pl](get_intervals.pl) - get genomic interval(s) for the stable feature ID
+12. [make_fasta.sh](make_fasta.sh) - extract concensus sequence for interval(s)

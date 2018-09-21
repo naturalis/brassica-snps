@@ -1,6 +1,5 @@
 #!/bin/bash
-GENE=$1
-INTERVALS=$2
+INTERVALS=$1
 DATA=/home/ubuntu/data
 REF=$DATA/reference/Brassica_oleracea.v2.1.dna.toplevel.chromosomes.fa
 BSA=$DATA/BSA
