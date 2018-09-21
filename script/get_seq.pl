@@ -7,7 +7,7 @@ use Getopt::Long;
 use My::Brassica;
 use Data::Dumper;
 use Log::Log4perl qw(:easy);
-Log::Log4perl->easy_init($ERROR);
+Log::Log4perl->easy_init($DEBUG);
 
 # process command line arguments
 my $id;
@@ -52,7 +52,7 @@ while( my $cds = $cdss->next ) {
   # search SNPs
   my $snps = $schema->resultset("Snp")->search({
   	chromosome_id => $chr,
-    contrast      => $contrast,
+    	contrast      => $contrast,
   	position      => { '>=' => $start, '<=' => $end },
   });
   
@@ -63,6 +63,7 @@ while( my $cds = $cdss->next ) {
     my $pos = $snp->position;
     my $ref = $snp->ref;
     my $alt = $snp->alt;
+    DEBUG "$chr:$pos $ref -> $alt";
   
     # adjust SNP coordinate
     my $snp_coord;
