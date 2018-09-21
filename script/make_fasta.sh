@@ -6,6 +6,7 @@ BSA=$DATA/BSA
 BULKS="group-1-EF group-2-IF group-3-LF group-5-NF"
 SUFFIX=_pe.sorted.bam.RG.vcf
 OUTFILE=merged.fasta
+ALIGNED=merged.aligned.fasta
 
 # iterate over bulk assays
 for BULK in $BULKS; do
@@ -23,3 +24,6 @@ for BULK in $BULKS; do
   # append all CDSs concatenated below the header
   grep -v '>' ${BULK}.fasta >> ${OUTFILE}
 done
+
+# align
+muscle -in ${OUTFILE} -out ${ALIGNED}
