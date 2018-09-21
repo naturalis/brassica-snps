@@ -23,79 +23,83 @@ my $ref    = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
 my $schema = My::Brassica->connect("dbi:SQLite:$db");
 my $ctable = Bio::Tools::CodonTable->new();
 
-# select * from features where attributes like '%ID=CDS:Bo6g103730%' limit 1;
-my $cds = $schema->resultset("Feature")->single({ attributes => { LIKE => "%ID=CDS:$id.%" } });
+# select * from features where attributes like '%ID=CDS:Bo6g103730%';
+my $cdss = $schema->resultset("Feature")->search({ attributes => { LIKE => "%ID=CDS:$id.%" } });
 
-# get coordinates
-my $chr    = $cds->chromosome_id;
-my $start  = $cds->feat_start;
-my $end    = $cds->feat_end;
-my $phase  = $cds->phase;
-my $strand = $cds->strand;
+# iterate over CDS features
+while( my $cds = $cdss->next ) {
 
-# get coding, in-frame, reference sequence
-my $seq = get_refseq(
-	'chr'    => $chr,
-	'start'  => $start,
-	'stop'   => $end,
-	'phase'  => $phase,
-	'strand' => $strand,
-)->seq;
-
-# search SNPs
-my $snps = $schema->resultset("Snp")->search({
-	chromosome_id => $chr,
-  contrast      => $contrast,
-	position      => { '>=' => $start, '<=' => $end },
-});
-
-# iterate over SNPs
-while( my $snp = $snps->next ) {
-
-  # lookup variables
-  my $pos = $snp->position;
-  my $ref = $snp->ref;
-  my $alt = $snp->alt;
-
-  # adjust SNP coordinate
-  my $snp_coord;
-  if ( $strand eq '-' ) {
-    
-    # CDS is on '-' strand, count backward from 3' location
-    $snp_coord = $end - $pos;
+  # get coordinates
+  my $chr    = $cds->chromosome_id;
+  my $start  = $cds->feat_start;
+  my $end    = $cds->feat_end;
+  my $phase  = $cds->phase;
+  my $strand = $cds->strand;
+  
+  # get coding, in-frame, reference sequence
+  my $seq = get_refseq(
+  	'chr'    => $chr,
+  	'start'  => $start,
+  	'stop'   => $end,
+  	'phase'  => $phase,
+  	'strand' => $strand,
+  )->seq;
+  
+  # search SNPs
+  my $snps = $schema->resultset("Snp")->search({
+  	chromosome_id => $chr,
+    contrast      => $contrast,
+  	position      => { '>=' => $start, '<=' => $end },
+  });
+  
+  # iterate over SNPs
+  while( my $snp = $snps->next ) {
+  
+    # lookup variables
+    my $pos = $snp->position;
+    my $ref = $snp->ref;
+    my $alt = $snp->alt;
+  
+    # adjust SNP coordinate
+    my $snp_coord;
+    if ( $strand eq '-' ) {
+      
+      # CDS is on '-' strand, count backward from 3' location
+      $snp_coord = $end - $pos;
+    }
+    else {
+      
+      # CDS is on '+' strand, count forward relative to CDS start
+      $snp_coord = $pos - $start;
+    }
+    $snp_coord -= $phase; # subtract, might be 0, 1 or 2
+  					
+    # revcom $ref & $alt if on '-' strand
+    my ( $cref, $calt ) = ( $ref, $alt );
+    if ( $strand eq '-' ) {
+      $cref =~ tr/ACGT/TGCA/;
+      $calt =~ tr/ACGT/TGCA/;
+      $cref = reverse($cref);
+      $calt = reverse($calt);
+    }
+  
+    # splice alternative allele					
+    my $retval = splice_snp(
+      'seq' => $seq,
+      'ref' => $cref,
+      'alt' => $calt,
+      'pos' => $snp_coord,
+      'str' => $strand,
+    );
+  					
+    # replace $seq with $retval if any
+    $seq = $retval if $retval;
   }
-  else {
-    
-    # CDS is on '+' strand, count forward relative to CDS start
-    $snp_coord = $pos - $start;
-  }
-  $snp_coord -= $phase; # subtract, might be 0, 1 or 2
-					
-  # revcom $ref & $alt if on '-' strand
-  my ( $cref, $calt ) = ( $ref, $alt );
-  if ( $strand eq '-' ) {
-    $cref =~ tr/ACGT/TGCA/;
-    $calt =~ tr/ACGT/TGCA/;
-    $cref = reverse($cref);
-    $calt = reverse($calt);
-  }
-
-  # splice alternative allele					
-  my $retval = splice_snp(
-    'seq' => $seq,
-    'ref' => $cref,
-    'alt' => $calt,
-    'pos' => $snp_coord,
-    'str' => $strand,
-  );
-					
-  # replace $seq with $retval if any
-  $seq = $retval if $retval;
+  
+  # print output
+  print '>', $contrast, " C${chr}[${strand}]:${start}-${end}\n";
+  print $seq, "\n";
 }
-
-# print output
-print '>', $contrast, "\n";
-print $seq, "\n";
 
 sub splice_snp {
 	my %args = @_;
