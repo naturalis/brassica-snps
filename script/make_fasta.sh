@@ -7,7 +7,7 @@ BULKS="group-1-EF group-2-IF group-3-LF group-5-NF"
 SUFFIX=_pe.sorted.bam.RG.vcf.gz
 
 for BULK in $BULKS; do
-  gatk FastaAlternateReferenceMaker \
+  java -jar /usr/local/src/GenomeAnalysisTK.jar FastaAlternateReferenceMaker \
     -R ${REF} \
     -o ${BULK}.fasta \
     -L ${INTERVALS} \
