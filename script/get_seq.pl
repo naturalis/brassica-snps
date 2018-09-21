@@ -106,7 +106,7 @@ while( my $cds = $cdss->next ) {
 
 # print output
 print ">REF\n", join('',@ref), "\n";
-print ">$contrast", join('',@alt), "\n";
+print ">$contrast\n", join('',@alt), "\n";
 
 sub splice_snp {
 	my %args = @_;
