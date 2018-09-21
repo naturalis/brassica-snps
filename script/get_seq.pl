@@ -26,6 +26,9 @@ my $ctable = Bio::Tools::CodonTable->new();
 # select * from features where attributes like '%ID=CDS:Bo6g103730%';
 my $cdss = $schema->resultset("Feature")->search({ attributes => { LIKE => "%ID=CDS:$id.%" } });
 
+# store reference and alternative sequence segments here
+my ( @ref, @alt )
+
 # iterate over CDS features
 while( my $cds = $cdss->next ) {
 
@@ -44,6 +47,7 @@ while( my $cds = $cdss->next ) {
   	'phase'  => $phase,
   	'strand' => $strand,
   )->seq;
+  push @ref, $seq;
   
   # search SNPs
   my $snps = $schema->resultset("Snp")->search({
@@ -96,10 +100,13 @@ while( my $cds = $cdss->next ) {
     $seq = $retval if $retval;
   }
   
-  # print output
-  print '>', $contrast, " C${chr}[${strand}]:${start}-${end}\n";
-  print $seq, "\n";
+  # store spliced seq
+  push @alt, $seq;
 }
+
+# print output
+print ">REF\n", join('',@ref), "\n";
+print ">$contrast", join('',@alt), "\n";
 
 sub splice_snp {
 	my %args = @_;
