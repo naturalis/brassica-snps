@@ -31,7 +31,9 @@ while(<$fh>) {
   $vcf->parse_header();
   
   # do some simple parsing. Most thorough but slowest way how to get the data.
-  while( my $x = $vcf->next_data_hash() { 
-    DEBUG Dumper($x);
+  while( my $x = $vcf->next_data_hash() ) { 
+    if ( scalar( @{ $x->{ALT} } ) > 1 ) {
+      DEBUG Dumper($x);
+    }
   }
 }
