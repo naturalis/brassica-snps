@@ -62,6 +62,7 @@ CDS: while( my $cds = $cdss->next ) {
     'region' => $region,
   );
   $vcf->parse_header();
+  my $offset = 0;
   
   # do some simple parsing. Most thorough but slowest way how to get the data.
   while( my $x = $vcf->next_data_hash() ) {
@@ -101,7 +102,7 @@ CDS: while( my $cds = $cdss->next ) {
 				else {
 					# CDS is on '+' strand, count
 					# forward relative to CDS start
-					$snp_coord = $pos - $start;
+					$snp_coord = ( $pos - $start ) + $offset;
 				}
 				$snp_coord -= $phase; # is 0, 1 or 2      
 				
@@ -122,7 +123,10 @@ CDS: while( my $cds = $cdss->next ) {
 					'pos' => $snp_coord,
 					'str' => $strand,
 				);
-				$raw = $retval if $raw;
+				if ( $raw ) {
+				  $raw = $retval;
+				  $offset += ( length($calt) - 1 );
+				}
       }
     }
   }
