@@ -10,9 +10,13 @@ Log::Log4perl->easy_init($DEBUG);
 # process command line arguments
 my $vcffile;
 my $intervals;
+my $readgroup;
+my $mincover = 0.5;
 GetOptions(
   'vcffile=s'   => \$vcffile,
   'intervals=s' => \$intervals,
+  'readgroup=s' => \$readgroup,
+  'mincover=f'  => \$mincover,
 );
 
 # open intervals file, iterate over lines
@@ -31,9 +35,28 @@ while(<$fh>) {
   $vcf->parse_header();
   
   # do some simple parsing. Most thorough but slowest way how to get the data.
-  while( my $x = $vcf->next_data_hash() ) { 
-    if ( scalar( @{ $x->{ALT} } ) > 1 ) {
-      DEBUG Dumper($x);
+  while( my $x = $vcf->next_data_hash() ) {
+
+    # only continue if there is at least one alternative allele
+    my @alts = grep { $_ ne '<NON_REF>' } @{ $x->{ALT} };
+    if ( @alts ) {
+
+      # get total depth and position
+      my $dp  = $x->{INFO}->{DP};
+      my $pos = $x->{POS};
+      next unless $dp;
+
+      # lookup allelic depths
+      my @ads = split /,/, $x->{gtypes}->{$readgroup}->{AD};
+      my $string;
+      for my $i ( 0 .. $#alts ) {
+        if ( ( $ads[ $i + 1 ] / $dp ) > $mincover ) {
+          $string .= $alts[ $i ] . ':' . $ads[ $i + 1 ] . '/' . $dp . ' ';
+        }
+      }
+      if ( $string ) {
+        print $line, "\t", $pos, "\t", $string, "\n";
+      }
     }
   }
 }
