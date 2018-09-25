@@ -16,10 +16,12 @@ feature type, print the genomic coordinate(s) of the feature in a GATK-style
 my $db = '/home/ubuntu/data/reference/sqlite/snps.db';
 my $id;
 my $type = 'gene'; # can be 'gene', 'CDS', 'exon', etc. I.e. terms from the SO
+my $bed;
 GetOptions(
 	'db=s'   => \$db,
 	'id=s'   => \$id,
 	'type=s' => \$type,
+	'bed'    => \$bed,
 );
 
 # instantiate database
@@ -30,5 +32,10 @@ my $features = $schema->resultset('Feature')->search({ attributes => { LIKE => "
 
 # iterate over resultset
 while( my $f = $features->next ) {
-	print 'C', $f->chromosome_id, ':', $f->feat_start, '-', $f->feat_end, "\n";
+  if ( $bed ) {
+    print 'C', $f->chromosome_id, "\t", $f->feat_start - 1, "\t", $f->feat_end - 1, "\n";
+  }
+  else {
+	  print 'C', $f->chromosome_id, ':', $f->feat_start, '-', $f->feat_end, "\n";
+  }
 }
