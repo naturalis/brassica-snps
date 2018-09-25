@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Vcf;
+use Bio::SeqIO;
 use Getopt::Long;
 use Data::Dumper;
 use My::Brassica;
