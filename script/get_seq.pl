@@ -163,7 +163,7 @@ sub is_nonsyn {
 	
 	# check if observed matches expected
 	if ( $obs_ref ne $exp_ref ) {
-		ERROR "Error: $obs_ref != $exp_ref (relative position: $pos)";
+		ERROR "Error: $obs_ref != $exp_ref (relative position: $pos, strand: ".$args{str}.")";
 	}
 	
 	# replace the reference allele with the alternative and test for synonymy
