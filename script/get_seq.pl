@@ -116,7 +116,7 @@ CDS: while( my $cds = $cdss->next ) {
 				}	
 				
 				# do sanity checks, splice snp
-				my $retval = is_nonsyn(
+				my $retval = splice_snp(
 					'raw' => $raw,
 					'ref' => $cref,
 					'alt' => $calt,
@@ -133,7 +133,7 @@ CDS: while( my $cds = $cdss->next ) {
   print ">${readgroup} ${gene} ${region}\n${raw}\n";
 }
 
-sub is_nonsyn {
+sub splice_snp {
 	my %args = @_;
 	my $raw = $args{raw};
 	
