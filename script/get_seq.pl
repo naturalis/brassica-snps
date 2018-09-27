@@ -123,7 +123,7 @@ CDS: while( my $cds = $cdss->next ) {
 					'pos' => $snp_coord,
 					'str' => $strand,
 				);
-				if ( $raw ) {
+				if ( $retval ) {
 				  $raw = $retval;
 				  $offset += ( length($calt) - 1 );
 				}
