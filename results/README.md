@@ -98,3 +98,5 @@ Resulting in the file [uniprot.txt](uniprot.txt).
 
 Mapping this back to _Brassica oleracea_ stable gene IDs using [BioMart](https://plants.ensembl.org/biomart/martview) results
 in [mart_export.tsv](mart_export.tsv).
+
+> Now go into the [genes](genes) folder
