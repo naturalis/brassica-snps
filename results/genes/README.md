@@ -16,3 +16,5 @@ for gene in $genes; do
 	done 
 done
 ```
+
+*NOTE: splicing did not succeed for group-5-NF Bo4g021200: https://github.com/naturalis/brassica-snps/commit/7aca0288c13825fa9c533c1eef1d310b8de830f4*
