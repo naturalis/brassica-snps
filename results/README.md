@@ -1,3 +1,8 @@
+The results that are generated in this folder subsequent to the execution of the 
+first five steps outlined here: https://github.com/naturalis/brassica-snps/tree/master/script
+As well as the creation of data tables using the scripts here: https://github.com/naturalis/brassica-snps/tree/master/sql
+and their loading into a sqlite database.
+
 ## [genes.txt](genes.txt)
 
 A file that lists the gene IDs of genes that occur in one or more contrasts, and the
@@ -98,3 +103,5 @@ Resulting in the file [uniprot.txt](uniprot.txt).
 
 Mapping this back to _Brassica oleracea_ stable gene IDs using [BioMart](https://plants.ensembl.org/biomart/martview) results
 in [mart_export.tsv](mart_export.tsv).
+
+> Now go into the [genes](genes) folder
