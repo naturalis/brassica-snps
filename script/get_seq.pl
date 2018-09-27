@@ -89,8 +89,8 @@ CDS: while( my $cds = $cdss->next ) {
       
       # we have an alternative allele
       if ( $alt ) {
-        WARN "$alt $strand" if length($alt) > 1;
-        INFO "$gene $region $pos: $alt";
+        WARN "Variant longer than 1bp: $alt $strand" if length($alt) > 1;
+        INFO "$gene $region $readgroup $pos: $alt";
         
 				# adjust SNP coordinate
 				my $snp_coord;
