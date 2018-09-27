@@ -90,7 +90,7 @@ CDS: while( my $cds = $cdss->next ) {
       # we have an alternative allele
       if ( $alt ) {
         WARN "$alt $strand" if length($alt) > 1;
-        INFO "$pos: $alt";
+        INFO "$gene $region $pos: $alt";
         
 				# adjust SNP coordinate
 				my $snp_coord;
@@ -170,9 +170,9 @@ sub splice_snp {
 		ERROR "Error: $obs_ref != $exp_ref (relative position: $pos, strand: ".$args{str}.")";
 	}
 	
-	# replace the reference allele with the alternative and test for synonymy
+	# replace the reference allele with the alternative
 	substr( $raw, $pos, $length, $args{alt} );
-	$raw;
+	return $raw;
 }
 
 sub get_refseq {
