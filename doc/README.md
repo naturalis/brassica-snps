@@ -19,7 +19,7 @@ This analysis yielded summary information on identified QTL regions (
 [3](https://github.com/naturalis/brassica-snps/blob/master/results/EF-NF/gprime.png),
 [4](https://github.com/naturalis/brassica-snps/blob/master/results/IF-LF/gprime.png),
 [5](https://github.com/naturalis/brassica-snps/blob/master/results/IF-NF/gprime.png),
-[6](https://github.com/naturalis/brassica-snps/blob/master/results/LF-NF/gprime.png),
+[6](https://github.com/naturalis/brassica-snps/blob/master/results/LF-NF/gprime.png)
 ), as well as calculated G' values for each SNP.
 
 We [created](https://github.com/naturalis/brassica-snps/blob/master/sql/snps.sql) a relational database, into which we
