@@ -13,7 +13,14 @@ over each combined pair of phenotypic contrasts from among EF-IF, EF-LF, EF-NF, 
 
 We then [transformed](https://github.com/naturalis/brassica-snps/blob/master/script/qtlseqr.sh) these VCF variant files 
 (each containing two bulk samples) into tab-separated tables for input into [QTLSeqr](https://github.com/naturalis/brassica-snps/blob/master/script/QTLseqr.R).
-This analysis yielded summary information on identified QTL regions, as well as calculated G' values for each SNP.
+This analysis yielded summary information on identified QTL regions (
+[1](https://github.com/naturalis/brassica-snps/blob/master/results/EF-IF/gprime.png),
+[2](https://github.com/naturalis/brassica-snps/blob/master/results/EF-LF/gprime.png),
+[3](https://github.com/naturalis/brassica-snps/blob/master/results/EF-NF/gprime.png),
+[4](https://github.com/naturalis/brassica-snps/blob/master/results/IF-LF/gprime.png),
+[5](https://github.com/naturalis/brassica-snps/blob/master/results/IF-NF/gprime.png),
+[6](https://github.com/naturalis/brassica-snps/blob/master/results/LF-NF/gprime.png),
+), as well as calculated G' values for each SNP.
 
 We [created](https://github.com/naturalis/brassica-snps/blob/master/sql/snps.sql) a relational database, into which we
 imported data tables for chromosomes (names, centromere locations), genomic features (i.e. locations of genes, 3'/5' UTRs,
