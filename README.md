@@ -1,5 +1,5 @@
 # brassica-snps
-Scripts for bulk segregant analysis and genotyping of Brassica (T1000 &amp; Jersey Cale)
+Scripts for bulk segregant analysis and genotyping of Brassica (TO1000 &amp; Jersey Kale)
 
 ## BSA analysis
 
