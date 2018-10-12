@@ -46,8 +46,8 @@ my $seq = Bio::SeqIO->new(
 
 # instantiate online blast factory 
 my $fac = Bio::Tools::Run::RemoteBlast->new(
-	'-prog'				=> 'blastn',
-	'-data'				=> 'nr',
+	'-prog'       => 'blastn',
+	'-data'       => 'nr',
 	'-readmethod' => 'SearchIO',
 );
 
