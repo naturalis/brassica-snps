@@ -4,19 +4,19 @@ use warnings;
 use Getopt::Long;
 use Bio::DB::GenBank;
 use Log::Log4perl qw(:easy);
-use Bio::Tools::Run::StandAloneBlastPlus;
+use Bio::Tools::Run::RemoteBlast;
 Log::Log4perl->easy_init($DEBUG);
 
 # process command line arguments
 my $interval;
 my $taxon = 3702;
+my $ref = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
+# or: /Users/rutger.vos/Dropbox/documents/projects/dropbox-projects/brassica/Brassica_oleracea_chromosomes
 GetOptions(
 	'interval=s' => \$interval,
 	'taxon=i'    => \$taxon,
+	'ref=s'      => \$ref,
 );
-
-# location of reference genome
-my $ref = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
 
 # read intervals file, concatenate CDSs
 my $fasta = ">query\n";
@@ -40,20 +40,40 @@ my $seq = Bio::SeqIO->new(
 )->next_seq;
 
 # instantiate online blast factory 
-my $fac = Bio::Tools::Run::StandAloneBlastPlus->new(
-	'-db_name' => 'nr',
- 	'-remote'  => 1
+my $fac = Bio::Tools::Run::RemoteBlast->new(
+	'-data' => 'nr',
+ 	'-prog' => 'blastn'
 );
 
 # instantiate genbank lookup client
 my $gb = Bio::DB::GenBank->new;
 
 # perform the blast query
-my $result = $fac->tblastn( '-query' => $seq );
+my @hits;
+$fac->submit_blast( $seq );
+while ( my @rids = $fac->each_rid ) {
+  for my $rid ( @rids ) {
+    my $rc = $fac->retrieve_blast($rid);
+    
+    # result is not an object, still waiting
+    if ( !ref($rc) ) {
+      $fac->remove_rid($rid) if $rc < 0;
+      DEBUG "waiting...";
+      sleep 5;
+    }
+    else {
+      my $result = $rc->next_result();
+      $fac->remove_rid($rid);
+      while ( my $hit = $result->next_hit ) {
+        push @hits, $hit;
+      }
+    }
+  }
+}
 
-# iterate over results
+# iterate over results, filter
 my @filtered;
-while( my $hit = $result->next_hit ) {
+for my $hit ( @hits ) {
 	my $acc = $hit->accession;
 	DEBUG $acc;
 
