@@ -46,9 +46,9 @@ my $seq = Bio::SeqIO->new(
 
 # instantiate online blast factory 
 my $fac = Bio::Tools::Run::RemoteBlast->new(
-  '-prog'       => 'blastn',
-  '-data'       => 'nr',
-  '-readmethod' => 'SearchIO',
+	'-prog'				=> 'blastn',
+	'-data'				=> 'nr',
+	'-readmethod' => 'SearchIO',
 );
 
 # instantiate genbank lookup client
@@ -58,23 +58,23 @@ my $gb = Bio::DB::GenBank->new;
 my @hits;
 $fac->submit_blast( $seq );
 while ( my @rids = $fac->each_rid ) {
-  for my $rid ( @rids ) {
-    my $rc = $fac->retrieve_blast($rid);
-    
-    # response is not an object
-    if ( !ref($rc) ) {
-      $fac->remove_rid($rid) if $rc < 0;
-      DEBUG "waiting";
-      sleep 5;
-    } 
-    else {
-      my $result = $rc->next_result();
-      $fac->remove_rid($rid);
-      while ( my $hit = $result->next_hit ) {
-        push @hits, $hit;
-      }
-    }
-  }
+	for my $rid ( @rids ) {
+		my $rc = $fac->retrieve_blast($rid);
+		
+		# response is not an object
+		if ( !ref($rc) ) {
+			$fac->remove_rid($rid) if $rc < 0;
+			DEBUG "waiting";
+			sleep 5;
+		} 
+		else {
+			my $result = $rc->next_result();
+			$fac->remove_rid($rid);
+			while ( my $hit = $result->next_hit ) {
+				push @hits, $hit;
+			}
+		}
+	}
 }
 
 # iterate over results, filter
@@ -93,14 +93,14 @@ for my $hit ( @hits ) {
 			
 			# annotation values for 'db_xref' are under 'gene'
 			for my $f ( $seq->get_SeqFeatures('gene') ) {
-			  DEBUG $f;
-			  for my $val ( $f->get_tag_values('db_xref') ) {
-			    DEBUG $val;
-			    if ( $val =~ /^TAIR:(\S+)/ ) {
-			      my $id = $1;
-			      print $label, "\t", $hit->significance, "\t", $ncbi_base, $acc, "\t", $tair_base, $id, "\n";
-			    }
-			  }
+				DEBUG $f;
+				for my $val ( $f->get_tag_values('db_xref') ) {
+					DEBUG $val;
+					if ( $val =~ /^TAIR:(\S+)/ ) {
+						my $id = $1;
+						print $label, "\t", $hit->significance, "\t", $ncbi_base, $acc, "\t", $tair_base, $id, "\n";
+					}
+				}
 			}
 		}
 	}
