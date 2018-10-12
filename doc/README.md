@@ -91,7 +91,8 @@ We then extracted the [UniProtKB identifiers](https://github.com/naturalis/brass
 of the input genes that were annotated with this term, yielding 22 genes. We mapped these identifiers
 back to the [reference gene IDs](https://github.com/naturalis/brassica-snps/tree/master/results/genes),
 and [extracted](https://github.com/naturalis/brassica-snps/blob/master/script/get_seq.pl) their reference
-sequences as well as the alternate sequences for the different bulks.
+sequences as well as the alternate sequences for the different bulks. We then [BLASTed](https://github.com/naturalis/brassica-snps/blob/master/script/get_homolog.pl) these sequences to get the nearest RefSeq hits for _Arabidopsis_
+and retrieved the associated TAIR records.
 
 **Assuming we are happy with this procedure, the question now is whether we can interpret the functions
 of these genes and the coding effects that the alternate sequences may have.**
