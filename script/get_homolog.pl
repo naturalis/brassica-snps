@@ -13,12 +13,14 @@ $Bio::Tools::Run::RemoteBlast::MODVERSION = '0.0.1';
 # process command line arguments
 my $interval;
 my $taxon = 3702;
+my $label = 'record'; # could be anything, ideally a sensible identifier
 my $ref = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
 # or: /Users/rutger.vos/Dropbox/documents/projects/dropbox-projects/brassica/Brassica_oleracea_chromosomes
 GetOptions(
 	'interval=s' => \$interval,
 	'taxon=i'    => \$taxon,
 	'ref=s'      => \$ref,
+	'label=s'    => \$label,
 );
 
 # read intervals file, concatenate CDSs
@@ -96,7 +98,7 @@ for my $hit ( @hits ) {
 			    DEBUG $val;
 			    if ( $val =~ /^TAIR:(\S+)/ ) {
 			      my $id = $1;
-			      print "\t", $ncbi_base, $acc, "\t", $tair_base, $id;
+			      print $label, "\t", $hit->significance, "\t", $ncbi_base, $acc, "\t", $tair_base, $id, "\n";
 			    }
 			  }
 			}
