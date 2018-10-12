@@ -7,6 +7,9 @@ use Log::Log4perl qw(:easy);
 use Bio::Tools::Run::RemoteBlast;
 Log::Log4perl->easy_init($DEBUG);
 
+# this shuts up a spurious 'uninitialized' warning
+$Bio::Tools::Run::RemoteBlast::MODVERSION = '0.0.1';
+
 # process command line arguments
 my $interval;
 my $taxon = 3702;
@@ -41,8 +44,9 @@ my $seq = Bio::SeqIO->new(
 
 # instantiate online blast factory 
 my $fac = Bio::Tools::Run::RemoteBlast->new(
-	'-data' => 'nr',
- 	'-prog' => 'blastn'
+  '-prog'       => 'blastn',
+  '-data'       => 'nr',
+  '-readmethod' => 'SearchIO',
 );
 
 # instantiate genbank lookup client
@@ -55,12 +59,12 @@ while ( my @rids = $fac->each_rid ) {
   for my $rid ( @rids ) {
     my $rc = $fac->retrieve_blast($rid);
     
-    # result is not an object, still waiting
+    # response is not an object
     if ( !ref($rc) ) {
       $fac->remove_rid($rid) if $rc < 0;
-      DEBUG "waiting...";
+      DEBUG "waiting";
       sleep 5;
-    }
+    } 
     else {
       my $result = $rc->next_result();
       $fac->remove_rid($rid);
@@ -72,16 +76,30 @@ while ( my @rids = $fac->each_rid ) {
 }
 
 # iterate over results, filter
-my @filtered;
+my $tair_base = q[https://www.arabidopsis.org/servlets/TairObject?type=locus&name=];
+my $ncbi_base = q[https://www.ncbi.nlm.nih.gov/nuccore/];
 for my $hit ( @hits ) {
 	my $acc = $hit->accession;
 	DEBUG $acc;
 
-	# versioned refseq
+	# accession is of a versioned refseq...
 	if ( $acc =~ /^N(?:M|R|P)_.+?\.\d/ ) {
 		my $seq = $gb->get_Seq_by_version($acc);
+		
+		# ...and belonging to our model organism
 		if ( $seq->species->ncbi_taxid == $taxon ) {
-			print $acc, "\n";
+			
+			# annotation values for 'db_xref' are under 'gene'
+			for my $f ( $seq->get_SeqFeatures('gene') ) {
+			  DEBUG $f;
+			  for my $val ( $f->get_tag_values('db_xref') ) {
+			    DEBUG $val;
+			    if ( $val =~ /^TAIR:(\S+)/ ) {
+			      my $id = $1;
+			      print "\t", $ncbi_base, $acc, "\t", $tair_base, $id;
+			    }
+			  }
+			}
 		}
 	}
 }
