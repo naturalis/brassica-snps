@@ -65,7 +65,7 @@ while ( my @rids = $fac->each_rid ) {
 		if ( !ref($rc) ) {
 			$fac->remove_rid($rid) if $rc < 0;
 			DEBUG "waiting";
-			sleep 5;
+			sleep 10;
 		} 
 		else {
 			my $result = $rc->next_result();
