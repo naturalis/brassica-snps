@@ -132,24 +132,26 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
       			);
       		};
       		if ( $@ ) {
-      			ERROR "Problem extracting ${chr}[${strand}]:${start}..${end} (phase: ${phase})";
+      		  my $template = 'Problem extracting %s[%s]:%d..%d (phase: %d)';
+      		  my $msg = sprintf($template, $cds->chromosome_id, $cds->strand, $cds->feat_start, $cds->feat_end, $cds->phase);
+      			ERROR $msg;
       			ERROR $@;
       			next SNP;
       		}  	
       		
 					# adjust SNP coordinate
 					my $snp_coord;
-					if ( $strand eq '-' ) {
+					if ( $cds->strand eq '-' ) {
 						# CDS is on '-' strand, count 
 						# backward from 3' location
-						$snp_coord = $end - $pos;
+						$snp_coord = $cds->feat_end - $pos;
 					}
 					else {
 						# CDS is on '+' strand, count
 						# forward relative to CDS start
-						$snp_coord = $pos - $start;
+						$snp_coord = $pos - $cds->feat_start;
 					}
-					$snp_coord -= $phase; # is 0, 1 or 2  
+					$snp_coord -= $cds->phase; # is 0, 1 or 2  
 					
 					# revcom $ref & $alt if on '-' strand
 					my ( $cref, $calt ) = ( $ref, $alt );
@@ -167,7 +169,7 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
 						'ref' => $cref,
 						'alt' => $calt,
 						'pos' => $snp_coord,
-						'str' => $strand,
+						'str' => $cds->strand,
 					);	
 					$is_nonsyn ? $nonsyn++ : $syn++;
 					$stop_codon++ if $pos >= (length($seq->seq) - 2);
