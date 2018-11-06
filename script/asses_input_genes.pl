@@ -255,7 +255,7 @@ sub get_coverage {
   my %args = @_;
   
   # make bed file
-  my ($fh,$filename) = tempfile();
+  my ($fh,$filename) = tempfile( 'tmpXXXX', SUFFIX => '.intervals' );
   print $fh $args{'chr'} . ':' . $args{'start'} . '-' . $args{'stop'};
   close $fh;
   
