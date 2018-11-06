@@ -72,8 +72,8 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
     INFO "\tcopy: ${bo_id}";
 
     # get gene and CDS coordinates, get SNPs
-    my $cdss = $schema->resultset('Feature')->search({ 'attributes' => { 'LIKE' => "%ID=CDS:$bo_id.%"  } });
-    my $gene = $schema->resultset('Feature')->single({ 'attributes' => { 'LIKE' => "%ID=gene:$bo_id.%" } });
+    my $cdss = $schema->resultset('Feature')->search({ 'attributes' => { 'LIKE' => "%ID=CDS:$bo_id.%" } });
+    my $gene = $schema->resultset('Feature')->single({ 'attributes' => { 'LIKE' => "%ID=gene:$bo_id%" } });
     my $snps = $schema->resultset("Snp")->search({
 		  'chromosome_id' => $gene->chromosome_id,
 			'position'      => {
