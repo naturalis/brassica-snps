@@ -234,7 +234,9 @@ sub get_refseq {
 	my %args  = @_;
 	my ( $chr, $start, $stop ) = @args{ qw(chr start stop) };
 	$chr = "C$chr" if $chr !~ /^C/; # translate chromosome foreign key to FASTA ID
-	my $fasta = `fastacmd -d $ref -s $chr -L $start,$stop`;
+	my $command = "fastacmd -d $ref -s $chr -L $start,$stop";
+	DEBUG $command;
+	my $fasta = `$command`;
 	DEBUG $fasta;
 	
 	# parse raw FASTA
