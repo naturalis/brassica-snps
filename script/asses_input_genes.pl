@@ -108,7 +108,7 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
 		  
 		  # populate seen hash
 		  $seen{$pos} = {} if not $seen{$pos};
-		  $seen{$pos}->{$ref} = {} if not $seen{$pos}->{$ref}
+		  $seen{$pos}->{$ref} = {} if not $seen{$pos}->{$ref};
 		  
 		  # have not seen this ref/alt combination yet
 		  if ( not $seen{$pos}->{$ref}->{$alt}++ ) {
