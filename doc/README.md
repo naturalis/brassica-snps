@@ -6,6 +6,8 @@ From a cross between the putatively homozygous _B. oleracea_ var TO1000 and the 
 Of each flowering category (EF, IF, LF, NF) we selected ±10 individuals for bulk segregant analysis, i.e. their isolated DNA
 was pooled per category in equal concentrations for each individual and then sequenced using paired-end Illumina sequencing.
 
+![](histogram.png)
+
 We [mapped](https://github.com/naturalis/brassica-snps/blob/master/script/bwa.sh) the reads from each category against
 the TO1000 reference genome v2.1 using `BWA mem`. We [computed all variants for all sites](https://github.com/naturalis/brassica-snps/blob/master/script/snp.sh)
 over each of these mapped genomes and then performed [joint genotyping](https://github.com/naturalis/brassica-snps/blob/master/script/genotype.sh)
