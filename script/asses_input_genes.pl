@@ -111,7 +111,7 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
 		  $seen{$pos}->{$ref} = {} if not $seen{$pos}->{$ref}
 		  
 		  # have not seen this ref/alt combination yet
-		  if ( not $seen{$pos}->{$ref}->{$alt}++ ) {}
+		  if ( not $seen{$pos}->{$ref}->{$alt}++ ) {
   		  my @starts = grep { $pos >= $_ } keys %lookup;
   		  @starts = grep { $pos <= $lookup{$_} } @starts;
   		  
