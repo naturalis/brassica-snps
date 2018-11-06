@@ -45,7 +45,7 @@ while(<$fh>) {
     
     # it's pointless to try to investigate the copies on scaffolds:
     # we didn't map the reads to them, didn't do the QTLSeqR analysis, etc.
-    if ( $line[0] =~ /Bo\dg\d+/ ) {
+    if ( $line[0] =~ /^Bo\dg\d+/ ) {
       my %record    = map { $header[$_] => $line[$_] } 0 .. $#header;
       my $gene_name = $record{'AT_ID'};
       my $bo_id     = $record{'OLERACEA_ID'};
