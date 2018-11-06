@@ -13,7 +13,7 @@ Log::Log4perl->easy_init($DEBUG);
 my $infile = '/home/ubuntu/brassica-snps/results/targeted/oleracea_flowering_time_genes_frontiers.tsv';
 my $bam    = '/home/ubuntu/data/gDNA/group-4/group-4_pe.sorted.bam';
 my $db     = '/home/ubuntu/data/reference/sqlite/snps.db'; 
-my $ref    = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes';
+my $ref    = '/home/ubuntu/data/reference/Brassica_oleracea_chromosomes.fa';
 my $jar    = '/usr/local/src/GenomeAnalysisTK.jar';
 GetOptions(
   'infile=s' => \$infile,
