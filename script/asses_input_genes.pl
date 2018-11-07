@@ -117,7 +117,9 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
   		  
   		  # is a coding snp
   		  if ( scalar(@starts) == 1 ) {
-  		    $indel_coding += ( length($ref) == length($alt) ? 1 : 0 );
+  		    
+  		    # the SNP is an indel if the length of the ref allele is not the same as the length of the alt allele
+  		    $indel_coding += ( length($ref) != length($alt) ? 1 : 0 );
   		    my ($cds) = grep { $pos >= $_->feat_start && $pos <= $_->feat_end } @cds;
   		    
       		# get coding, in-frame, reference sequence
@@ -162,8 +164,8 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
 						$calt = reverse($calt);
 					}	
 					
-					# compute whether synonymous and whether observed
-					# reference allele matches the expectation
+					# compute whether synonymous and where, relative to the
+					# local seq, the SNP is (i.e. in stop codon?)
 					my ( $is_nonsyn, $pos ) = is_nonsyn(
 						'seq' => $seq,
 						'ref' => $cref,
@@ -178,7 +180,9 @@ for my $gene_name ( sort { $a cmp $b } keys %genes ) {
   		    ERROR "This should be impossible";
   		  }
   		  else {
-  		    $indel_noncoding += ( length($ref) == length($alt) ? 1 : 0 );
+  		    
+  		    # the SNP is an indel if the length of the ref allele is not the same as the length of the alt allele
+  		    $indel_noncoding += ( length($ref) != length($alt) ? 1 : 0 );
   		    $silent++;
   		  }
 		  }
@@ -262,7 +266,7 @@ sub get_coverage {
   close $fh;
   
   # run the command
-  open my $stdout, "java -jar $jar -T DepthOfCoverage -R $ref -I $bam -L $filename |" or die $!;
+  open my $stdout, "java -jar $jar -T DepthOfCoverage -R $ref -I $bam -L $filename -l fatal |" or die $!;
   my ( $seen_header, $average_coverage );
   LINE: while(<$stdout>) {
     if ( /^Target/ ) {
