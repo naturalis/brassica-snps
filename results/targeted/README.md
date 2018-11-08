@@ -31,15 +31,17 @@ interpreted as follows:
   of any exons, i.e. they are inside introns, or 3' or 5' untranslated regions (UTRs). In the figure
   the colour scheme of the SNPs escalates from silent < synonymous < nonsynomous (i.e. a gene copy
   that is red may also have synonymous or silent SNPs).
-- `stop_codon` is interpreted here as whether any SNPs occur in the stop codon at all. Whether there
-  are better ways to do this has not been investigated as it appears to be an issue that is probably
-  peripheral to the whole system.
-- `indels` were identified on the basis of whether the reference allele and the alternative allele
-  differ in length.
+- `stop_codon` is interpreted in our analysis as whether any SNPs occur in the stop codon at all. 
+  Whether there are better ways to do this has not been investigated as it appears to be an issue that 
+  is probably peripheral to the whole system.
+- `indels` were identified in our analysis on the basis of whether the reference allele and the 
+  alternative allele differ in length.
+- We have not looked at alternative splicing, because it seems like a hassle to do for very little
+  importance.
 
 The SNPs that were analyzed here were those from all bulk segregant analyses filtered by G'>2.5. In
 other words, these SNPs are significant, with good coverage, and segregate between phenotyped groups.
-The interesting result here is that there are such SNPs, that are additionally non-synonymous, for FT.
+The interesting result here is that there *are* such SNPs, that are additionally non-synonymous, for FT.
 We can thus make a reasonable case that these would indeed have been implicated in bringing about the
 different phenotypes.
 
