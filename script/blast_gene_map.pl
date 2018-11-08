@@ -56,13 +56,14 @@ sub do_blast {
   # write input file
   my ( $fh, $filename ) = tempfile();
   print $fh ">query\n", $args{$args{'primer_type'}};
-  close fh;
+  close $fh;
   
   # run query
-  my $result = $bp->blastn( -query => $tmpfile );
+  my $result = $bp->blastn( '-query' => $filename );
 	print $result->num_hits, "\n";
 	while( my $hit = $result->next_hit ) {
 		print Dumper($hit);
-	}	
+	}
   
+  unlink $filename;
 }
