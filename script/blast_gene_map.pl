@@ -60,9 +60,12 @@ sub do_blast {
   
   # run query
   my $result = $bp->blastn( '-query' => $filename );
-	print $result->num_hits, "\n";
+  my @hits;
 	while( my $hit = $result->next_hit ) {
-		print Dumper($hit);
+		if ( $hit->accession eq $args{'linkage_group'} ) {
+		  DEBUG "identity: " . $hit->frac_identical('total');
+		  print Dumper($hit);
+		}
 	}
   
   unlink $filename;
