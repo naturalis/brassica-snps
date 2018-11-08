@@ -27,14 +27,14 @@ interpreted as follows:
   conform with those in the paper: coverage is lowest for the CO copy on chromosome 9 (Bo9g163730),
   which is the one deletion in the Kashirka cultivar. Apparently the deletion is homologous across
   these two cultivars.
-- `silent` SNPs are those which occur within the coordinates of the gene's entire locus, but outside
+- `silent` SNPs are those that occur within the coordinates of the gene's entire locus, but outside
   of any exons, i.e. they are inside introns, or 3' or 5' untranslated regions (UTRs). In the figure
   the colour scheme of the SNPs escalates from silent < synonymous < nonsynomous (i.e. a gene copy
   that is red may also have synonymous or silent SNPs).
 - `stop_codon` is interpreted here as whether any SNPs occur in the stop codon at all. Whether there
   are better ways to do this has not been investigated as it appears to be an issue that is probably
   peripheral to the whole system.
-- `indels` where identified on the basis of whether the reference allele and the alternative allele
+- `indels` were identified on the basis of whether the reference allele and the alternative allele
   differ in length.
 
 The SNPs that were analyzed here were those from all bulk segregant analyses filtered by G'>2.5. In
