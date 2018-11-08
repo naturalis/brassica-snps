@@ -51,6 +51,7 @@ LINE: while(<$fh>) {
       my @results = do_blast(%record, 'primer_type' => $_);
       if ( @results == 1 ) {
         $record{$_ . '_start'} = $results[0]->{'start'};
+        $record{$_ . '_end'}   = $results[0]->{'end'};
         $have_hits++;
       }
     }
