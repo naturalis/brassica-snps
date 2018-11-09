@@ -75,3 +75,11 @@ We execute as:
 ```bash
 filter_candidate_snps.pl group-4_pe.sorted.bam.genotypes.tsv > group-4_pe.sorted.bam.genotypes.filtered.tsv
 ```
+
+Which yields (sans header):
+
+| snp_id | chromosome_id | position | ref | alt |
+|--------|---------------|----------|-----|-----|
+| 1      | 1             | 1517     | T   | C   |
+| 2      | 1             | 21618    | G   | A   |
+| 3      | 1             | 21738    | G   | A   |
