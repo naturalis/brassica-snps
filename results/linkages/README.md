@@ -64,9 +64,13 @@ We are going to filter these according to the following criteria:
 - the SNP must be a truly single nucleotide, so REF and ALT must both be length 1
 
 This is implemented in [this script](../../script/filter_candidate_snps.pl). Besides the filtering,
-it also strips the 'C' prefix from the CHROM columns (so that it can be used as an integer foreign key
-to link to the chromosomes table), and pre-pend another column of an autoincrementing integer that 
-becomes the primary key. We execute as:
+it takes the following steps to prepare the output for ingesting into SQLite:
+
+- strips the 'C' prefix from the CHROM columns, making it a foreign key to the chromosomes table
+- pre-pend an autoincrementing integer that becomes the primary key
+- only emit primary key, foreign key, POS, REF, ALT
+
+We execute as:
 
 ```bash
 filter_candidate_snps.pl group-4_pe.sorted.bam.genotypes.tsv > group-4_pe.sorted.bam.genotypes.filtered.tsv
