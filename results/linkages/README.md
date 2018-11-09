@@ -62,3 +62,9 @@ We are going to filter these according to the following criteria:
 - the SNP must be heterozygous, which means the middle of the three numbers in the PL
   column must be 0
 - the SNP must be a truly single nucleotide, so REF and ALT must both be length 1
+
+This is implemented in [this script](../../script/filter_candidate_snps.pl), which we execute as:
+
+```bash
+filter_candidate_snps.pl group-4_pe.sorted.bam.genotypes.tsv > group-4_pe.sorted.bam.genotypes.filtered.tsv
+```
