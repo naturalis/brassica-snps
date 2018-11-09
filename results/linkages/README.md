@@ -87,3 +87,10 @@ Which yields (sans header):
 We [add a table definition](https://github.com/naturalis/brassica-snps/commit/cdf480c8ff40e0b188058f63cc8000bf6b09e2e2),
 and, using [this script](../../sql/make_dbix_api.sh), we then
 [update the api](https://github.com/naturalis/brassica-snps/commit/46578876f1e4f8914cbcc2ac0f1b14bdd094bbad).
+Finally, we import the data:
+
+```sql
+.separator "\t"
+.import group-4_pe.sorted.bam.genotypes.filtered.tsv kale_snps
+create index kale_snp_location_idx on kale_snps(chromosome_id,position);
+```
