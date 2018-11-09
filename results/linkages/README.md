@@ -22,11 +22,15 @@ This table should be interpreted as follows:
 - the last four columns in our table are the absolute locations in the reference genome of
   the hit
 
-Given there are 322 hits that are fairly evenly dispersed across the genome, we have the
-option of omitting two out of three to come up with a list of 100.
+Given there are 322 hits that are fairly evenly dispersed across the genome, we can look for
+SNPs in their vicinity. For example, for each of ±1/3 of these hits, find a good SNP nearby,
+for a total of 100 SNPs.
 
 SNP selection, finding heterozygous SNPs in the Jersey Kale
 -----------------------------------------------------------
+
+Now we have to find candidate SNPs in the Jersey Kale mapped genome, on which we've done
+variant calling, so we have a VCF file to work with.
 
 First, we transform and filter the VCF file to a tab-separated table:
 
@@ -43,7 +47,7 @@ gatk VariantsToTable \
   --output group-4_pe.sorted.bam.genotypes.tsv 
 ```
 
-This gives a table like this:
+This gives a table like this (but very large):
 
 | CHROM | POS   | REF             | ALT | group-4.AD | group-4.PL  | group-4.GQ |
 |-------|-------|-----------------|-----|------------|-------------|------------|
@@ -94,3 +98,14 @@ Finally, we import the data:
 .import group-4_pe.sorted.bam.genotypes.filtered.tsv kale_snps
 create index kale_snp_location_idx on kale_snps(chromosome_id,position);
 ```
+
+Reconciling linkage map markers and Jersey Kale SNPs
+----------------------------------------------------
+
+To design a set of SNPs for genotyping the offspring of future (or current) crosses, it makes sense to try
+to reconcile the markers in the linkage map with candidate SNPs, so that they both conform to our quality
+requirements (well-supported heterozygous) and such that they are regularly interspersed in terms of 
+linkage (because otherwise they might not segregate). As an example of how this might be done, 
+[this script](../../script/reconcile_linkage_kale_snps.pl) has looked for all filtered SNPs that are in the
+range of the linkage map marker primers ±100bp. This produced 
+[this table](kale_snps_near_markers.tsv).
