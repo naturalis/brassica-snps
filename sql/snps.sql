@@ -100,3 +100,5 @@ create table if not exists kale_snps (
 	ref text,
 	alt text
 );
+create index kale_snp_location_idx on kale_snps(chromosome_id,position);
+
