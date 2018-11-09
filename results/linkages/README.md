@@ -42,3 +42,14 @@ gatk VariantsToTable \
   --variant group-4_pe.sorted.bam.genotypes.vcf \
   --output group-4_pe.sorted.bam.genotypes.tsv 
 ```
+
+This gives a table like this:
+
+| CHROM | POS   | REF             | ALT | group-4.AD | group-4.PL  | group-4.GQ |
+|-------|-------|-----------------|-----|------------|-------------|------------|
+| C1    | 33524 | C               | A   | 128,16     | 242,0,5162  | 99         |
+| C1    | 33753 | CTT             | C   | 76,126     | 5122,0,2797 | 99         |
+| C1    | 33757 | ATGTCCAAGACAGAT | A   | 86,128     | 5088,0,3255 | 99         |
+| C1    | 33816 | G               | C   | 0,236      | 10420,710,0 | 99         |
+C1      33835   A       G       0,233   10023,699,0     99
+C1      33863   CA      C       0,217   6557,652,0      99
