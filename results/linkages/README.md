@@ -22,11 +22,15 @@ This table should be interpreted as follows:
 - the last four columns in our table are the absolute locations in the reference genome of
   the hit
 
-Given there are 322 hits that are fairly evenly dispersed across the genome, we have the
-option of omitting two out of three to come up with a list of 100.
+Given there are 322 hits that are fairly evenly dispersed across the genome, we can look for
+SNPs in their vicinity. For example, for each of ±1/3 of these hits, find a good SNP nearby,
+for a total of 100 SNPs.
 
 SNP selection, finding heterozygous SNPs in the Jersey Kale
 -----------------------------------------------------------
+
+Now we have to find candidate SNPs in the Jersey Kale mapped genome, on which we've done
+variant calling, so we have a VCF file to work with.
 
 First, we transform and filter the VCF file to a tab-separated table:
 
@@ -43,7 +47,7 @@ gatk VariantsToTable \
   --output group-4_pe.sorted.bam.genotypes.tsv 
 ```
 
-This gives a table like this:
+This gives a table like this (but very large):
 
 | CHROM | POS   | REF             | ALT | group-4.AD | group-4.PL  | group-4.GQ |
 |-------|-------|-----------------|-----|------------|-------------|------------|
