@@ -41,6 +41,6 @@ LINE: while(<>) {
     $record{'CHROM'} =~ s/^C//;
     
     # print remaining SNPs
-    print join("\t", $snp_id++, @record{@header}), "\n";
+    print join("\t", $snp_id++, @record{qw(CHROM POS REF ALT)}), "\n";
   }
 }
