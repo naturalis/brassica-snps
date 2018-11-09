@@ -24,3 +24,21 @@ This table should be interpreted as follows:
 
 Given there are 322 hits that are fairly evenly dispersed across the genome, we have the
 option of omitting two out of three to come up with a list of 100.
+
+SNP selection, finding heterozygous SNPs in the Jersey Kale
+-----------------------------------------------------------
+
+First, we transform and filter the VCF file to a tab-separated table:
+
+```bash
+gatk VariantsToTable \
+  -F CHROM \
+  -F POS \
+  -F REF \
+  -F ALT \
+  -GF AD \
+  -GF PL \
+  -GF GQ \
+  --variant group-4_pe.sorted.bam.genotypes.vcf \
+  --output group-4_pe.sorted.bam.genotypes.tsv 
+```
