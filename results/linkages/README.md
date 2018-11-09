@@ -53,3 +53,12 @@ This gives a table like this:
 | C1    | 33816 | G               | C   | 0,236      | 10420,710,0 | 99         |
 | C1    | 33835 | A               | G   | 0,233      | 10023,699,0 | 99         |
 | C1    | 33863 | CA              | C   | 0,217      | 6557,652,0  | 99         |
+
+We are going to filter these according to the following criteria:
+
+- the total depth, which is the sum of the two numbers in the AD column, must be between
+  100 and 400, by the same logic we applied [here](https://github.com/naturalis/brassica-snps/blob/master/script/QTLseqr.R#L56-L57)
+- the quality, in the GQ column, must be 99, just like [here](https://github.com/naturalis/brassica-snps/blob/master/script/QTLseqr.R#L59)
+- the SNP must be heterozygous, which means the middle of the three numbers in the PL
+  column must be 0
+- the SNP must be a truly single nucleotide, so REF and ALT must both be length 1
