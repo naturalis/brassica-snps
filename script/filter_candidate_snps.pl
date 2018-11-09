@@ -13,7 +13,9 @@ LINE: while(<>) {
       s/^group-4\.//;
       push @header, $_;
     }
-    print join("\t", @header), "\n";
+    
+    # no header, so we can import into SQLite
+    # print join("\t", @header), "\n";
   }
   
   # process record
