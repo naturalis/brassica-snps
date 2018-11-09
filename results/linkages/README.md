@@ -83,3 +83,5 @@ Which yields (sans header):
 | 1      | 1             | 1517     | T   | C   |
 | 2      | 1             | 21618    | G   | A   |
 | 3      | 1             | 21738    | G   | A   |
+
+We [add a table definition](https://github.com/naturalis/brassica-snps/commit/cdf480c8ff40e0b188058f63cc8000bf6b09e2e2)
