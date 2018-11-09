@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use List::Util 'sum';
 my @header;
+my $snp_id = 1;
 LINE: while(<>) {
   chomp;
   my @line = split /\t/, $_;
@@ -29,14 +30,17 @@ LINE: while(<>) {
     next LINE if length($record{'REF'}) != 1 or length($record{'ALT'}) != 1;
     
     # avoid low coverage (<100) or repeats (>400)
-    my @cover = split /,/, $record{AD};
+    my @cover = split /,/, $record{'AD'};
     next LINE if sum(@cover) < 100 or sum(@cover) > 400;
     
     # middle genotype, 0/1, has highest score, i.e. heterozygous SNP
-    my @genotypes = split /,/, $record{PL};
+    my @genotypes = split /,/, $record{'PL'};
     next LINE if $genotypes[1] != 0; 
     
+    # change chromosome name to ID
+    $record{'CHROM'} =~ s/^C//;
+    
     # print remaining SNPs
-    print join("\t", @record{@header}), "\n";
+    print join("\t", $snp_id++, @record{@header}), "\n";
   }
 }
