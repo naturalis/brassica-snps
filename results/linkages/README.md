@@ -62,3 +62,5 @@ We are going to filter these according to the following criteria:
 - the SNP must be heterozygous, which means the middle of the three numbers in the PL
   column must be 0
 - the SNP must be a truly single nucleotide, so REF and ALT must both be length 1
+
+This is implemented in [this script](../../script/filter_candidate_snps.pl).
