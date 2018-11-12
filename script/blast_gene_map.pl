@@ -88,6 +88,7 @@ sub do_blast {
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
       while( my $hsp = $hit->next_hsp ) {
+        next unless $hsp->{HSP_LENGTH} == $hsp->{QUERY_LENGTH};
         DEBUG "*******************************************************";
         DEBUG Dumper($hsp);
       }
