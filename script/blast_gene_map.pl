@@ -94,6 +94,7 @@ sub do_blast {
         push @hsps, $hsp;
       }
       DEBUG scalar(@hsps);
+      die Dumper(\@hsps) if scalar(@hsps) > 1;
       # only want exact matches
 #      if ( ($total-$ident) <= 1 ) {
 #        my ( $start, $end ) = $hit->range('hit');
