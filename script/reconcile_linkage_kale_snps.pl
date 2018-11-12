@@ -34,14 +34,14 @@ while(<$fh>) {
   # process header
   if ( not @header ) {
     @header = @line;
-    print join("\t", @header, 'snp_pos', 'snp_ref', 'snp_alt', 'window_size'), "\n";
+    print join("\t", @header, 'snp_pos', 'snp_ref', 'snp_alt', 'window_size', 'seq' ), "\n";
   }
   
   # process record 
   else {
     my %record = map { $header[$_] => $line[$_] } 0 .. $#header;
     my $chromosome_id = substr $record{'linkage_group'}, 1;
-    my @coordinates = sort { $a <=> $b } grep { $_ } @record{qw(fw_primer_start fw_primer_end rev_primer_start rev_primer_end seq)};
+    my @coordinates = sort { $a <=> $b } grep { $_ } @record{qw(fw_primer_start fw_primer_end rev_primer_start rev_primer_end)};
     my ( $start, $stop ) = ( $coordinates[0], $coordinates[-1] );    
     
     # look for @filtered snps while growing the window
