@@ -78,7 +78,8 @@ sub do_blast {
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
       my $ident = $hit->frac_identical('total');
-      DEBUG $ident;
+      my $numuq = $hit->num_unaligned_query;
+      DEBUG "$ident $numuq";
       my @hsps = $hit->hsps;
       DEBUG "@hsps";
 
