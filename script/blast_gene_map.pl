@@ -91,6 +91,7 @@ sub do_blast {
         DEBUG "*******************************************************";
         DEBUG Dumper($hsp);
       }
+      die;
 #      Bio::Search::SearchUtils::tile_hsps($hit) unless $hit->tiled_hsps;
 #      my $ident = $hit->matches('id');
 #      my $total = $hit->length_aln('total');
