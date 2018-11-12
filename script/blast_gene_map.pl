@@ -71,7 +71,15 @@ sub do_blast {
   close $fh;
   
   # run query
-  my $result = $bp->blastn( '-query' => $filename );
+  my $result = $bp->blastn( 
+    '-query'     => $filename,
+    '-evalue'    => 1000,
+    '-word_size' => 7,
+    '-gapopen'   => 5,
+    '-gapextend' => 2,
+    '-reward'    => 1,
+    '-penalty'   => -3,
+  );
   my @hits;
   while( my $hit = $result->next_hit ) {
 
