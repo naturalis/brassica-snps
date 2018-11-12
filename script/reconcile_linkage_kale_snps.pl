@@ -42,6 +42,7 @@ while(<$fh>) {
     my %record = map { $header[$_] => $line[$_] } 0 .. $#header;
     my $chromosome_id = substr $record{'linkage_group'}, 1;
     my @coordinates = sort { $a <=> $b } grep { $_ } @record{qw(fw_primer_start fw_primer_end rev_primer_start rev_primer_end)};
+    DEBUG join '|', @coordinates;
     my ( $start, $stop ) = ( $coordinates[0], $coordinates[-1] );    
     
     # look for @filtered snps while growing the window
