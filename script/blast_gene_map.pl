@@ -83,26 +83,21 @@ sub do_blast {
     ]
   );
   my @hits;
-  while( my $hit = $result->next_hit ) {
+  HIT: while( my $hit = $result->next_hit ) {
 
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
       my @hsps;
-      while( my $hsp = $hit->next_hsp ) {
-        next unless $hsp->{'HSP_LENGTH'} == $hsp->{'QUERY_LENGTH'};
-        next unless ( $hsp->{'HSP_LENGTH'} - $hsp->{'IDENTICAL'} ) <= 1;
+      HSP: while( my $hsp = $hit->next_hsp ) {
+        next HSP unless $hsp->{'HSP_LENGTH'} == $hsp->{'QUERY_LENGTH'};
+        next HSP unless ( $hsp->{'HSP_LENGTH'} - $hsp->{'IDENTICAL'} ) <= 1;
         push @hsps, $hsp;
       }
-      DEBUG scalar(@hsps);
-      die Dumper(\@hsps) if scalar(@hsps) > 1;
-      # only want exact matches
-#      if ( ($total-$ident) <= 1 ) {
-#        my ( $start, $end ) = $hit->range('hit');
-#        push @hits, {
-#          'start' => $start,
-#          'end'   => $end,
-#        }
-#      }
+      next HIT if scalar(@hsps) > 1;
+      push @hits, {
+        'start' => $hsp->{'HIT_START'},
+        'end'   => $hsp->{'HIT_END'},
+      }
     }
   }
   unlink $filename;
