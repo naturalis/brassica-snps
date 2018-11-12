@@ -95,8 +95,8 @@ sub do_blast {
       }
       next HIT if scalar(@hsps) > 1;
       push @hits, {
-        'start' => $hsp->{'HIT_START'},
-        'end'   => $hsp->{'HIT_END'},
+        'start' => $hsps[0]->{'HIT_START'},
+        'end'   => $hsps[0]->{'HIT_END'},
       }
     }
   }
