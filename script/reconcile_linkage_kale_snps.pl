@@ -27,7 +27,7 @@ my $schema = My::Brassica->connect("dbi:SQLite:$db");
 # start reading the infile
 my @header;
 open my $fh, '<', $infile or die $!;
-while(<$fh>) {
+RECORD: while(<$fh>) {
   chomp;
   my @line = split /\t/, $_;
   
@@ -42,7 +42,7 @@ while(<$fh>) {
     my %record = map { $header[$_] => $line[$_] } 0 .. $#header;
     my $chromosome_id = substr $record{'linkage_group'}, 1;
     my @coordinates = sort { $a <=> $b } grep { $_ } @record{qw(fw_primer_start fw_primer_end rev_primer_start rev_primer_end)};
-    DEBUG join '|', @coordinates;
+    next RECORD if scalar(@coordinates) == 0;
     my ( $start, $stop ) = ( $coordinates[0], $coordinates[-1] );    
     
     # look for @filtered snps while growing the window
