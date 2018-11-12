@@ -38,7 +38,7 @@ LINE: while(<$fh>) {
     
     # populate the record
     my %record = map { $header[$_] => $line[$_] } 0 .. $#header;
-    next LINE if $record{'marker_type'} ne 'SNP';
+    # next LINE if $record{'marker_type'} ne 'SNP';
     
 
     # run blast
@@ -78,7 +78,7 @@ sub do_blast {
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
       my $ident = $hit->frac_identical('total');
-      DEBUG "identity: $ident";
+      DEBUG Dumper($hit);
 
       # only want exact matches
       if ( $ident == 1.0 ) {
