@@ -77,14 +77,13 @@ sub do_blast {
 
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
-      my $ident = $hit->frac_identical('total');
-      my $numuq = $hit->num_unaligned_query;
-      DEBUG "$ident $numuq";
-      my @hsps = $hit->hsps;
-      DEBUG "@hsps";
+      Bio::Search::SearchUtils::tile_hsps($hit) unless $hit->tiled_hsps;
+      my $ident = $hit->matches('id');
+      my $total = $hit->length_aln('total');
+      DEBUG "$ident $total";
 
       # only want exact matches
-      if ( $ident == 1.0 ) {
+      if ( ($total-$ident) <= 1 ) {
         my ( $start, $end ) = $hit->range('hit');
         push @hits, {
           'start' => $start,
