@@ -78,7 +78,9 @@ sub do_blast {
     # only want hits on the same chromosome
     if ( $hit->accession eq $args{'linkage_group'} ) {
       my $ident = $hit->frac_identical('total');
-      DEBUG Dumper($hit);
+      DEBUG $ident;
+      my @hsps = $hit->hsps;
+      DEBUG "@hsps";
 
       # only want exact matches
       if ( $ident == 1.0 ) {
