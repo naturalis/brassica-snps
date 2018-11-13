@@ -33,9 +33,9 @@ LINE: while(<>) {
     my @cover = split /,/, $record{'AD'};
     next LINE if sum(@cover) < 100 or sum(@cover) > 400;
     
-    # middle genotype, 0/1, has highest score, i.e. heterozygous SNP
+    # rightmost genotype, 1/1, has highest score, i.e. homozygous alternative SNP
     my @genotypes = split /,/, $record{'PL'};
-    next LINE if $genotypes[1] != 0; 
+    next LINE if $genotypes[2] != 0; 
     
     # change chromosome name to ID
     $record{'CHROM'} =~ s/^C//;
