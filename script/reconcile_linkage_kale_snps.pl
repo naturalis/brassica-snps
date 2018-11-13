@@ -44,7 +44,7 @@ RECORD: while(<$fh>) {
     my @coordinates = sort { $a <=> $b } grep { $_ } @record{qw(fw_primer_start fw_primer_end rev_primer_start rev_primer_end)};
     next RECORD if scalar(@coordinates) != 4;
     my ( $start, $stop ) = ( $coordinates[0], $coordinates[-1] );
-    next RECORD if ($stop-$start)>2000;
+    next RECORD if ($stop-$start)>3000;
     
     # look for @filtered snps while growing the window
     my $window = $range;
