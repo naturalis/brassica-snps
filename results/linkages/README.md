@@ -5,12 +5,13 @@ In order for Klaas Vrieling's team to design SNPs it would be useful if we had a
 of how linkage (centiMorgan) distance relates to absolute locations in the genome:
 the ideal set of SNPs should be fairly evenly spread out in linkage distance. To get
 a sense of this we used the [supplementary table](12864_2012_4560_MOESM1_ESM.xls) from
-[this paper](https://doi.org/10.1186/1471-2164-13-523) as an input.
+[this paper](https://doi.org/10.1186/1471-2164-13-523) as an input. (The values in this
+table are based on the _capitata_ cultivar.)
 
 Using [this script](../../script/blast_gene_map.pl) we BLASTed each forward and reverse
 primer from the spreadsheet for a SNP (not an SSR) against the _Brassica oleracea_
-reference genome. The results are [here](linkages_to_abs.tsv). This table should be 
-interpreted as follows:
+TO1000 reference genome. The results are [here](linkages_to_abs.tsv). This table should 
+be interpreted as follows:
 
 - except for the last four columns, all are identical between the spreadsheet and our table,
   but our table has headings that are a bit more amenable to importing into databases and
