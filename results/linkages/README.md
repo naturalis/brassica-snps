@@ -100,3 +100,11 @@ Finally, we import the data:
 .import group-4_pe.sorted.bam.genotypes.filtered.tsv kale_snps
 create index kale_snp_location_idx on kale_snps(chromosome_id,position);
 ```
+
+SNP selection, finding SNPs near linkage markers
+------------------------------------------------
+
+Now that we have mapped markers from relative to absolute distances (first section), and have filtered
+SNPs (second section), we now want to find SNPs near the markers. Using this
+[script](../../script/reconcile_linkage_kale_snps.pl) we iteratively build a growing window around
+each marker, until we find a SNP. The results of this are [here](kale_snps_near_markers.tsv).
