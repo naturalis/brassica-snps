@@ -1,3 +1,4 @@
+gene_id	blast_e	refseq	tair_locus
 Bo2g165940	0.0	https://www.ncbi.nlm.nih.gov/nuccore/NM_125788.7	https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G63920
 Bo3g001210	2e-79	https://www.ncbi.nlm.nih.gov/nuccore/NM_001125681.2	https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G01910
 Bo3g001210	2e-79	https://www.ncbi.nlm.nih.gov/nuccore/NM_120269.4	https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G01910
