@@ -45,3 +45,7 @@ for gene in $genes; do
 	cd ../; 
 done
 ```
+
+For genes on the `-` strand we did the reverse complement 
+[here](https://github.com/naturalis/brassica-snps/commit/11bb7bd4825e49b6767b78c0eb35bd89921e1f31), and
+then aligned all genes (with muscle, default settings) [here](https://github.com/naturalis/brassica-snps/commit/32f3b64233584d1986c63fbb938f78ccfff74961)
