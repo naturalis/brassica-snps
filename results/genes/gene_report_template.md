@@ -5,7 +5,8 @@ stop codon in the translation. This would (likely) turn
 the gene into a non-functional pseudogene, affecting
 flowering time in that way. However, the only candidate where we 
 see a stop codon inserted midway in the sequence is in
-a single bulk for [Bo4g021200](Bo4g021200/group-5-NF.fasta).
+a single bulk for [Bo4g021200](Bo4g021200/group-5-NF.fasta), as 
+assessed using [this script](../../script/pseudo_gene.pl).
 
 # Are the Jersey Kale sequences uniformly different from the reference?
 
