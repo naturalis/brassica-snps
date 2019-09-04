@@ -6,7 +6,6 @@
 |Bo3g009090|0.0|[NM_180481.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_180481.4)|[AT5G13290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13290)||2|
 |Bo3g009090|0.0|[NM_121332.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_121332.4)|[AT5G13290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13290)||2|
 |Bo3g009090|0.0|[NM_001085108.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001085108.1)|[AT5G13290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13290)||2|
-|Bo3g009090|6e-122|[NM_121331.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_121331.3)|[AT5G13280](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13280)||2|
 |Bo3g052790|0.0|[NM_116438.2](https://www.ncbi.nlm.nih.gov/nuccore/NM_116438.2)|[AT4G02070](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT4G02070)||15|
 |Bo3g052790|0.0|[NM_001203727.2](https://www.ncbi.nlm.nih.gov/nuccore/NM_001203727.2)|[AT4G02070](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT4G02070)||15|
 |Bo3g054870|2e-140|[NM_111066.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_111066.4)|[AT3G02000](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G02000)||0|
@@ -20,17 +19,7 @@
 |Bo3g054870|2e-140|[NM_001337371.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001337371.1)|[AT3G01990](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G01990)||0|
 |Bo3g054870|2e-140|[NM_001337368.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001337368.1)|[AT3G01990](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G01990)||0|
 |Bo3g054870|2e-140|[NM_001337370.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001337370.1)|[AT3G01990](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G01990)||0|
-|Bo3g054870|2e-77|[NM_121410.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_121410.3)|[AT5G14070](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G14070)||0|
 |Bo4g004720|7e-105|[NM_130291.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_130291.3)|[AT2G47230](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G47230)||10|
-|Bo4g004720|1e-96|[NM_001202840.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001202840.1)|[AT2G47230](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G47230)||10|
-|Bo4g004720|2e-68|[NM_102416.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_102416.3)|[AT1G26540](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G26540)||10|
-|Bo4g004720|1e-64|[NM_001197969.2](https://www.ncbi.nlm.nih.gov/nuccore/NM_001197969.2)|[AT1G03290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G03290)||10|
-|Bo4g004720|1e-64|[NM_100211.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_100211.4)|[AT1G03290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G03290)||10|
-|Bo4g004720|1e-64|[NM_001331402.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001331402.1)|[AT1G03290](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G03290)||10|
-|Bo4g004720|1e-64|[NM_100212.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_100212.1)|[AT1G03300](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G03300)||10|
-|Bo4g004720|2e-35|[NM_101015.2](https://www.ncbi.nlm.nih.gov/nuccore/NM_101015.2)|[AT1G11420](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G11420)||10|
-|Bo4g004720|3e-21|[NM_001343823.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001343823.1)|[AT5G23770](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G23770)||10|
-|Bo4g004720|3e-21|[NM_001203443.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001203443.1)|[AT5G23770](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G23770)||10|
 |Bo4g021200|0.0|[NM_129961.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_129961.3)|[AT2G43990](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G43990)|group-5-NF|0|
 |Bo5g017470|0.0|[NM_118939.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_118939.3)|[AT4G28010](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT4G28010)||0|
 |Bo5g017960|0.0|[NM_101264.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_101264.4)|[AT1G13980](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G13980)||0|
@@ -42,8 +31,6 @@
 |Bo7g078120|0.0|[NM_126182.4](https://www.ncbi.nlm.nih.gov/nuccore/NM_126182.4)|[AT2G01210](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G01210)||2|
 |Bo7g078120|0.0|[NM_201661.2](https://www.ncbi.nlm.nih.gov/nuccore/NM_201661.2)|[AT2G01200](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G01200)||2|
 |Bo7g089210|0.0|[NM_124211.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_124211.3)|[AT5G48360](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G48360)||3|
-|Bo7g089210|3e-98|[NM_111632.3](https://www.ncbi.nlm.nih.gov/nuccore/NM_111632.3)|[AT3G07540](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G07540)||3|
-|Bo7g089210|2e-50|[NM_113446.5](https://www.ncbi.nlm.nih.gov/nuccore/NM_113446.5)|[AT3G25500](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G25500)||3|
 |Bo7g096670|0.0|[NM_001343887.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001343887.1)|[AT5G24630](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G24630)||8|
 |Bo7g096670|0.0|[NM_001343889.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001343889.1)|[AT5G24630](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G24630)||8|
 |Bo7g096670|0.0|[NM_001343886.1](https://www.ncbi.nlm.nih.gov/nuccore/NM_001343886.1)|[AT5G24630](https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G24630)||8|
