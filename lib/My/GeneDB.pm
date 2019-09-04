@@ -8,6 +8,16 @@ sub new {
     return bless \%record, $package;
 }
 
+sub link_name {
+    my ( $self, $field ) = @_;
+    my $value = $self->$field;
+    if ( $value =~ /^\[(.+?)\]/ ) {
+        my $name = $1;
+        return $name;
+    }
+    die $field;
+}
+
 sub to_markdown {
     my ( $self, @columns ) = @_;
     my @values = map { $self->$_ } @columns;
