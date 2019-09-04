@@ -38,6 +38,7 @@ sub AUTOLOAD {
 package My::GeneDB;
 use strict;
 use warnings;
+our $AUTOLOAD;
 
 sub new {
     my ( $package, $file ) = @_;
@@ -66,15 +67,13 @@ sub read {
             push @records, My::GeneDB::Record->new(%record);
         }
     }
+
+    # ->columns and ->records are the methods
     return {
         columns => \@header,
         records => \@records,
     };
 }
-
-sub columns { return @{ shift->{'columns'} } }
-
-sub records { return @{ shift->{'records'} } }
 
 sub to_markdown {
     my $self = shift;
@@ -83,6 +82,26 @@ sub to_markdown {
     push @lines, '|' . join( '|', map { '-' x length($_) } $self->columns ) . '|';
     push @lines, join( "\n", map { $_->to_markdown($self->columns) } $self->records );
     return join "\n", @lines;
+}
+
+sub AUTOLOAD {
+    my ( $self, @arg ) = @_;
+    my $method = $AUTOLOAD;
+    $method =~ s/.+://;
+    if ( exists $self->{$method} ) {
+        if ( @arg ) {
+            $self->{$method} = [ @arg ];
+            return $self;
+        }
+        else {
+            return @{ $self->{$method} };
+        }
+    }
+    else {
+        if ( $method !~ /^[A-Z]+$/ ) {
+            die "No method $method";
+        }
+    }
 }
 
 1;
