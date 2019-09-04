@@ -52,7 +52,7 @@ sub read {
         chomp;
         my @line = split /\|/, $_;
         shift @line;
-        pop @line;
+        #pop @line;
         if ( not @header ) {
             @header = @line;
             next LINE;
@@ -79,8 +79,8 @@ sub to_markdown {
     my $self = shift;
     my @lines;
     push @lines, '|' . join( '|', $self->columns ) . '|';
-    push @lines, '|' . join( '|', map { '-' } $self->columns ) . '|';
-    push @lines, '|' . join( '|', map { $_->to_markdown($self->columns) } $self->records ) . '|';
+    push @lines, '|' . join( '|', map { '-' x length($_) } $self->columns ) . '|';
+    push @lines, join( "\n", map { $_->to_markdown($self->columns) } $self->records );
     return join "\n", @lines;
 }
 
