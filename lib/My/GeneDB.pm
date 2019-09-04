@@ -11,6 +11,7 @@ sub new {
 sub to_markdown {
     my ( $self, @columns ) = @_;
     my @values = map { $self->$_ } @columns;
+    no warnings 'uninitialized';
     return '|' . join( '|', @values ) . '|';
 }
 
