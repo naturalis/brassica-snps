@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CDSS=$(ls ../results/genes/*/combined.fasta)
+CDSS=$(ls ../results/genes_meristem/*/combined.fasta)
 for CDS in $CDSS; do
 
   # do normal alignment
