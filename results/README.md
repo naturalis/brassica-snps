@@ -109,4 +109,11 @@ _Brassica oleracea_ stable gene IDs using
 [BioMart](https://plants.ensembl.org/biomart/martview), which, for uniprot.txt results
 in [mart_export.tsv](mart_export.tsv).
 
-> Now go into the [genes](genes) folder for further analysis of that file
+> Now go into the [genes](genes) folder for further analysis of the floral organ formation 
+> file
+
+Or,
+
+> Go into the [genes_meristem](genes_meristem) for analysis of genes involved in meristem
+> growth and/or its transition to reproductive phase, where similar biomart ID mappings
+> are waiting
