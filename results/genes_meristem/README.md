@@ -19,6 +19,8 @@ for gene in $genes; do
 done
 ```
 
+[Here](https://github.com/naturalis/brassica-snps/commit/d02f8abee7d083ee62e430c6caf50c810b1088e0) we 
+concatenated the CDS records so that each group has a single FASTA record, in a `combined.fasta` file:
 
 ```bash
 for gene in $genes; do 
@@ -27,7 +29,6 @@ for gene in $genes; do
 		echo ">$group" >> combined.fasta
 		grep -v '>' ${group}.fasta >> combined.fasta
 	done
-	muscle -in combined.fasta -out combined-aligned.fasta
 	cd ../
 done
 ```
