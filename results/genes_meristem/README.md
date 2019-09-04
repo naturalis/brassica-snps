@@ -3,6 +3,8 @@ The folders below this one contain the consensus sequences for the CDSs of inter
 homozygous parent TO1000 and Jersey Kale, any variants with respect to the reference (i.e. TO1000) can have an allele 
 frequency of at most 50% if the Kale is homozygous for the alternative, or 25% if it's heterozygous.
 
+# Creating the codon alignments
+
 [Here](https://github.com/naturalis/brassica-snps/commit/9978494239cab129923e6205d9112c22ef44b8a0) we computed the 
 consensus for those SNPs where the Kale is homozygous:
 
@@ -30,5 +32,16 @@ for gene in $genes; do
 		grep -v '>' ${group}.fasta >> combined.fasta
 	done
 	cd ../
+done
+```
+
+[Here](https://github.com/naturalis/brassica-snps/commit/d2483df99a9ee9691584129180eb7c4c40de26ee) we appended the spliced sequence of the reference genome:
+
+```bash
+REFSEQ=/home/ubuntu/data/reference/Brassica_oleracea.v2.1.dna.toplevel.fa.gz
+for gene in $genes; do 
+	cd $gene; 
+	get_refseq.pl -i cds.intervals -s $REFSEQ >> combined.fasta; 
+	cd ../; 
 done
 ```
