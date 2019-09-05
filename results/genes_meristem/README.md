@@ -11,11 +11,11 @@ The data have been processed with the following steps:
 
 gProfiler returned the following hits:
 
-![](../doc/gProfiler_boleracea_9-5-2019_4-18-48_PM.png)
+![](../../doc/gProfiler_boleracea_9-5-2019_4-18-48_PM.png)
 
 Note the bottom row, with the KEGG hit, which is for [Cyrcadian rhythm - plant](https://www.genome.jp/kegg-bin/show_pathway?ko04712)
 
-![](../doc/ko04712.png)
+![](../../doc/ko04712.png)
 
 Note also the three loci that contributed to this pathway being overrepresented:
 
