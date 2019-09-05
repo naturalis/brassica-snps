@@ -7,7 +7,7 @@ The data have been processed with the following steps:
 
 1. [create codon alignments](README_alignments.md)
 2. [gProfiler analysis](https://biit.cs.ut.ee/gplink/l/5AaY0UNkTs) using the [`Gene stable ID`](mart_export_vegetative_to_reproductive_phase_transition_of_meristem.tsv) for 
-[vegetative to reproductive phase transition of meristem](http://www.informatics.jax.org/vocab/gene_ontology/GO:0010228).
+[`vegetative to reproductive phase transition of meristem`](http://www.informatics.jax.org/vocab/gene_ontology/GO:0010228).
 
 gProfiler returned the following hits:
 
