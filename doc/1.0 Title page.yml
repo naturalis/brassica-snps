@@ -1,0 +1,29 @@
+---
+title: 'Finding the genes that underlie phenotypic differences among segregating bulks: a case study using flowering time in Brassica oleracea'
+tags:
+  - Bulk segregant analysis
+  - Quantitative trait locus
+  - FLOWERING LOCUS T (FT)
+  - Brassica oleracea
+  - Gene ontology
+  - Pathway analysis
+authors:
+ - name: Rutger Aldo Vos
+   orcid: 0000-0001-9254-7318
+   affiliation: 1
+ - name: Nnadi Nnaemeka Emmanuel
+   affiliation: 2
+ - name: John Chinyere Aguiyi
+   affiliation: "3, 4"
+affiliations:
+ - name: Research Group 'Understanding Evolution', Naturalis Biodiversity Center, Leiden, The Netherlands
+   index: 1
+ - name: Department of Microbiology, Faculty of Natural and Applied Science, Plateau State University, Bokkos, Plateau State, Nigeria
+   index: 2
+ - name: African Centre of Excellence on Phytomedicine Research and Development (ACEPRD), University of Jos, Jos, Plateau State, Nigeria
+   index: 3
+ - name:  Department of Pharmacology, Faculty of Pharmaceutical Sciences, University of Jos, Jos, Plateau State, Nigeria
+   index: 4
+date: 6 September 2019
+bibliography: paper.bib
+---
