@@ -1,6 +1,6 @@
 # brassica-snps
 
-![](doc/Jersey_kale_1836.jpg)
+![](doc/images/Jersey_kale_1836.jpg)
 
 Scripts for bulk segregant analysis and genotyping of Brassica (TO1000 &amp; Jersey Kale)
 
