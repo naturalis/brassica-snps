@@ -10,20 +10,27 @@ tags:
 authors:
  - name: Rutger Aldo Vos
    orcid: 0000-0001-9254-7318
-   affiliation: 1
- - name: Nnadi Nnaemeka Emmanuel
+   affiliation: "1, 2"
+ - name: Justyna Xxx
+   affiliation: 3
+ - name: Karin van Veen
    affiliation: 2
- - name: John Chinyere Aguiyi
-   affiliation: "3, 4"
+ - name: Eric Schranz
+   affiliation: 4
+ - name: Klaas Vrieling
+   affiliation: 2
+ - name: Peter Klinkhamer
+   affiliation: 2
+ - name: Frederic Lens
+   affiliation: 2
 affiliations:
  - name: Research Group 'Understanding Evolution', Naturalis Biodiversity Center, Leiden, The Netherlands
    index: 1
- - name: Department of Microbiology, Faculty of Natural and Applied Science, Plateau State University, Bokkos, Plateau State, Nigeria
+ - name: Institute of Biology Leiden, Leiden University, Leiden, The Netherlands
    index: 2
- - name: African Centre of Excellence on Phytomedicine Research and Development (ACEPRD), University of Jos, Jos, Plateau State, Nigeria
+ - name: Max Planck Institute
    index: 3
- - name:  Department of Pharmacology, Faculty of Pharmaceutical Sciences, University of Jos, Jos, Plateau State, Nigeria
-   index: 4
+ - name: Biosystematics Group, Wageningen University and Research, Wageningen, The Netherlands
 date: 6 September 2019
 bibliography: paper.bib
 ---
