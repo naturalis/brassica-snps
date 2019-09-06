@@ -100,6 +100,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 kale_snps
+
+Type: has_many
+
+Related object: L<My::Brassica::Result::KaleSnp>
+
+=cut
+
+__PACKAGE__->has_many(
+  "kale_snps",
+  "My::Brassica::Result::KaleSnp",
+  { "foreign.chromosome_id" => "self.chromosome_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 linkages
 
 Type: has_many
@@ -146,8 +161,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2018-09-07 14:08:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Wgksv3hfWEmZIsJayUWiDQ
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2018-11-09 14:13:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:hhw649aCsNPIiiusLzB9VQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

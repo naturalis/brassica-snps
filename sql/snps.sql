@@ -92,3 +92,13 @@ create table if not exists snps (
 );
 .import snps.tsv snps
 create index snp_location_idx on snps(chromosome_id,position);
+
+create table if not exists kale_snps ( 
+	snp_id integer constraint snp_pk primary key asc autoincrement,
+	chromosome_id integer constraint chromosome_fk references chromosomes (chromosome_id),
+	position integer,
+	ref text,
+	alt text
+);
+create index kale_snp_location_idx on kale_snps(chromosome_id,position);
+

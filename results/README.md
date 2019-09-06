@@ -99,9 +99,21 @@ To get the list of UniProtKB identifiers annotation with these terms we can extr
 grep 'floral organ formation' */enriched_GO_0003006.tsv | cut -f10 | sed -e 's: *// :,:g' | tr , '\n' | sort | uniq
 ```
 
-Resulting in the file [uniprot.txt](uniprot.txt).
-
-Mapping this back to _Brassica oleracea_ stable gene IDs using [BioMart](https://plants.ensembl.org/biomart/martview) results
+Resulting in the file [uniprot.txt](uniprot.txt). Likewise, searching for 
+`vegetative to reproductive phase transition of meristem` in the pruned GO:0003006 
+subgraph resulted in 
+[this file](uniprot_vegetative_to_reproductive_phase_transition_of_meristem.txt), and
+searching for `meristem growth` (note, this also matches `meristem growth regulation`)
+produced [this file](uniprot_meristem_growth.txt). We can map such lists back to
+_Brassica oleracea_ stable gene IDs using 
+[BioMart](https://plants.ensembl.org/biomart/martview), which, for uniprot.txt results
 in [mart_export.tsv](mart_export.tsv).
 
-> Now go into the [genes](genes) folder
+> Now go into the [genes](genes) folder for further analysis of the floral organ formation 
+> file
+
+Or,
+
+> Go into the [genes_meristem](genes_meristem) for analysis of genes involved in meristem
+> growth and/or its transition to reproductive phase, where similar biomart ID mappings
+> are waiting
