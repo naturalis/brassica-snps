@@ -2,7 +2,7 @@
 
 1. [bwa.sh](bwa.sh) - map samples against reference genome
 2. [snp.sh](snp.sh) - compute all variants for each sample
-3. [genotype.sh](genotype.sh) - joint genotyping over two merged samples
+3. [genotype.pl](genotype.pl) - joint genotyping over two merged samples
 4. [qtlseqr.sh](qtlseqr.sh) - prepare joint genotyping results for input in QTLSeqr.R
 5. [QTLseqr.R](QTLseqr.R) - compute QTL regions and G' values for SNPs
 6. [genes_in_qtl_regions.pl](genes_in_qtl_regions.pl) - get gene IDs for QTL regions
