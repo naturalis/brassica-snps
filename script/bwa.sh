@@ -34,7 +34,4 @@ for SAMPLE in $SAMPLES; do
 	# sort the reads in the BAM
 	samtools sort ${STEM}_pe.bam -o ${STEM}_pe.sorted.bam
 	rm ${STEM}_pe.bam
-
-	# index the BAM
-	samtools index ${STEM}_pe.sorted.bam
 done
