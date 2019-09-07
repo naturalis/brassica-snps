@@ -1,10 +1,6 @@
 Methods
 =======
 
-We [computed all variants for all sites](https://github.com/naturalis/brassica-snps/blob/master/script/snp.sh)
-over each of these mapped genomes and then performed [joint genotyping](https://github.com/naturalis/brassica-snps/blob/master/script/genotype.sh)
-over each combined pair of phenotypic contrasts from among EF-IF, EF-LF, EF-NF, IF-LF, IF-NF, and LF-NF.
-
 We then [transformed](https://github.com/naturalis/brassica-snps/blob/master/script/qtlseqr.sh) these VCF variant files 
 (each containing two bulk samples) into tab-separated tables for input into [QTLSeqr](https://github.com/naturalis/brassica-snps/blob/master/script/QTLseqr.R).
 This analysis yielded summary information on identified QTL regions (
