@@ -21,14 +21,13 @@ for BAM in $BAMS; do
 		samtools index ${BAM}
 	fi
 
-	# do the haplotype and compression if needed
-	if [ ! -f ${BAM}.RG.vcf.gz ]; then
+	# do the haplotype calling if needed
+	if [ ! -f ${BAM}.RG.vcf ]; then
 		gatk HaplotypeCaller \
 			--reference ${REF} \
 			--input ${BAM} \
 			--output ${BAM}.RG.vcf \
 			--emit-ref-confidence GVCF
-		gzip ${BAM}.RG.vcf
 	fi
 done
 
