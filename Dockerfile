@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+# set the data folder as an env var that we can use in scripts
+ENV DATA /home/ubuntu/data
+
 # add the local perl libraries to the container and its library search path
 ADD ./lib /home/ubuntu/brassica-snps/lib
 ENV PERL5LIB "${PERL5LIB}:/home/ubuntu/brassica-snps/lib"
@@ -54,6 +57,5 @@ RUN curl -L -o /usr/local/src/gatk-4.1.3.0.zip https://github.com/broadinstitute
 RUN unzip /usr/local/src/gatk-4.1.3.0.zip
 RUN ln -s /usr/local/src/gatk-4.1.3.0/gatk /usr/local/bin/gatk
 
-# run me as `docker run -it -v /home/ubuntu/data:mydata`
+# run me as `docker run -it -v <host data>:/home/ubuntu/data naturalis/brassica-snps`
 CMD [ "/bin/bash" ]
-
