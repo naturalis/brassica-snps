@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MartRegistry>
+<MartRegistry>
+  <MartURLLocation database="plants_mart_40" default="" displayName="Ensembl Plants Genes 40" host="plants.ensembl.org" includeDatasets="" martUser="" name="plants_mart" path="/biomart/martservice" port="80" serverVirtualSchema="plants_mart" visible="1" />
+  <MartURLLocation database="plants_snp_mart_40" default="" displayName="Ensembl Plants Variations 40" host="plants.ensembl.org" includeDatasets="" martUser="" name="plants_variations" path="/biomart/martservice" port="80" serverVirtualSchema="plants_mart" visible="1" />
+  <MartURLLocation database="plants_sequence_mart_40" default="" displayName="Ensembl Plants Sequences 40" host="plants.ensembl.org" includeDatasets="" martUser="" name="plants_sequences" path="/biomart/martservice" port="80" serverVirtualSchema="plants_mart" visible="0" />
+  <MartURLLocation database="plants_genomic_features_mart_40" default="" displayName="Ensembl Plants Genomic Features 40" host="plants.ensembl.org" includeDatasets="" martUser="" name="plants_genomic_features" path="/biomart/martservice" port="80" serverVirtualSchema="plants_mart" visible="0" />
+  <MartURLLocation database="ontology_mart_93" default="" displayName="Ontology Mart 93" host="plants.ensembl.org" includeDatasets="" martUser="" name="ontology" path="/biomart/martservice" port="80" serverVirtualSchema="plants_mart" visible="0" />
+</MartRegistry>
