@@ -1,13 +1,14 @@
--- all files we're loading will be tab separated
+-- The files that are being loaded are in $DATA/reference/sqlite
+-- All files we're loading are tab separated
 .separator "\t"
 
 create table if not exists chromosomes (
-        chromosome_id integer constraint chromosome_pk primary key asc autoincrement,
+    chromosome_id integer constraint chromosome_pk primary key asc autoincrement,
 	chromosome_name text,
-        centromere_feat_start integer, -- index
-        centromere_feat_end integer, -- index
-        centromere_hta_start integer, -- index
-        centromere_hta_end integer --index
+    centromere_feat_start integer, -- index
+    centromere_feat_end integer, -- index
+    centromere_hta_start integer, -- index
+    centromere_hta_end integer --index
 );
 .import chromosomes.tsv chromosomes
 
