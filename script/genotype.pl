@@ -24,8 +24,8 @@ for my $i ( 0 .. $#SAM-1 ) {
     $P2 =~ s/group-\d-//;
 
     # output files
-    my $OUT1 = "${DATA}/BSA/contrasts/${P1}-${P2}/combined-snps-${P1}-${P2}.vcf";
-    my $OUT2 = "${DATA}/BSA/contrasts/${P1}-${P2}/joint-genotypes-${P1}-${P2}.vcf";
+    my $OUT1 = "${DATA}/contrasts/${P1}-${P2}/combined-snps-${P1}-${P2}.vcf";
+    my $OUT2 = "${DATA}/contrasts/${P1}-${P2}/joint-genotypes-${P1}-${P2}.vcf";
 
     # combine the read groups
     system("gatk CombineGVCFs --reference ${REF} --variant ${RG1} --variant ${RG2} --output ${OUT1}");
