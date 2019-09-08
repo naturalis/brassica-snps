@@ -1,25 +1,30 @@
 #!/bin/bash
 
-# table to be used by QTLseqr.R
-OUT=BSA/SNPs_from_GATK.table
+# all pairwise comparisons between phenotypes
+CONTRASTS="EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF"
 
-# computed, joint genotypes
-VCF=BSA/joint-genotypes.vcf
+# iterate over pairwise comparisons
+for CONTRAST in $CONTRASTS; do 
 
-# create table
-if [ ! -e ${OUT} ]; then
-	gatk VariantsToTable \
-		-F CHROM \
-		-F POS \
-		-F REF \
-		-F ALT \
-		-GF AD \
-		-GF DP \
-		-GF PL \
-		-GF GQ \
-		--variant ${VCF} \
-		--output ${OUT}
+	# table to be used by QTLseqr.R
+	OUT=$DATA/contrasts/$CONTRAST/SNPs_from_GATK.table
+
+	# computed, joint genotypes
+	VCF=$DATA/contrasts/$CONTRAST/joint-genotypes.vcf
+
+	# create table
+	if [ ! -e ${OUT} ]; then
+		gatk VariantsToTable \
+			-F CHROM \
+			-F POS \
+			-F REF \
+			-F ALT \
+			-GF AD \
+			-GF DP \
+			-GF PL \
+			-GF GQ \
+			--variant ${VCF} \
+			--output ${OUT}
 fi
 
-# now execute the R script
-./QTLseqr.R
+done
