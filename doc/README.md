@@ -1,31 +1,9 @@
 Methods
 =======
 
-We [created](https://github.com/naturalis/brassica-snps/blob/master/sql/snps.sql) a relational database, into which we
-imported data tables for chromosomes (names, centromere locations), genomic features (i.e. locations of genes, 3'/5' UTRs,
-exons, CDSs, from the TO1000 reference genome annotation), linkage maps (markers, fwd/rev primer sequences, locations in cM)
-and SNPs (locations, ref/alt allele, numerous summary statistics including G' values). From the database schema we then
-[generated](https://github.com/naturalis/brassica-snps/blob/master/sql/make_dbix_api.sh) an API that provides
-[object-relational mapping](https://github.com/naturalis/brassica-snps/tree/master/lib/My) such that downstream analysis
-scripts have simplified access to the integrated data.
-
-For each contrast, we then [queried](https://github.com/naturalis/brassica-snps/blob/master/script/genes_in_qtl_regions.pl)
-which genes intersect with the inferred QTL regions, creating a [list](https://github.com/naturalis/brassica-snps/blob/master/results/genes.txt)
-of _B. oleracea_ gene IDs sorted by the number of contrasts in which they appear in a QTL region. For each of these genes,
-we then [calculated](https://github.com/naturalis/brassica-snps/blob/master/script/snps_in_cds.pl) whether they contained
-non-synonymous [SNPs in their coding regions](https://raw.githubusercontent.com/naturalis/brassica-snps/master/results/snps.tsv).
-
-Then, for each contrast, we extracted the gene identifiers that contain nonsynonymous SNPs and 
-[translated](https://github.com/naturalis/brassica-snps/blob/master/script/biomart.pl) these gene IDs to UniProtKB 
-identifiers (
-[1](https://github.com/naturalis/brassica-snps/blob/master/results/EF-IF/uniprot.txt), 
-[2](https://github.com/naturalis/brassica-snps/blob/master/results/EF-LF/uniprot.txt), 
-[3](https://github.com/naturalis/brassica-snps/blob/master/results/EF-NF/uniprot.txt), 
-[4](https://github.com/naturalis/brassica-snps/blob/master/results/IF-LF/uniprot.txt), 
-[5](https://github.com/naturalis/brassica-snps/blob/master/results/IF-NF/uniprot.txt), 
-[6](https://github.com/naturalis/brassica-snps/blob/master/results/LF-NF/uniprot.txt)
-). We used these lists of genes as input for SEA / GO term enrichment tests in [AgriGO](http://bioinfo.cau.edu.cn/agriGO),
-resulting in subgraphs of the gene ontology with significantly enriched terms (
+We used the $CONTRAST/uniprot.txt lists of genes as input for SEA / GO term enrichment tests in 
+[AgriGO](http://bioinfo.cau.edu.cn/agriGO), resulting in subgraphs of the gene ontology with significantly enriched 
+terms (
 [1](https://github.com/naturalis/brassica-snps/raw/master/results/EF-IF/enriched.png),
 [2](https://github.com/naturalis/brassica-snps/raw/master/results/EF-LF/enriched.png),
 [3](https://github.com/naturalis/brassica-snps/raw/master/results/EF-NF/enriched.png),
