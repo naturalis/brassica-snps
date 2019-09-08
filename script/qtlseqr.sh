@@ -4,16 +4,16 @@
 CONTRASTS="EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF"
 
 # iterate over pairwise comparisons
-for CONTRAST in $CONTRASTS; do 
+for C in ${CONTRASTS}; do
 
-	# table to be used by QTLseqr.R
-	OUT=$DATA/contrasts/$CONTRAST/SNPs_from_GATK.table
+	# TSV table to be used by QTLseqr.R
+	OUT="${DATA}/contrasts/${C}/SNPs_from_GATK.table"
 
-	# computed, joint genotypes
-	VCF=$DATA/contrasts/$CONTRAST/joint-genotypes.vcf
+	# previously computed, joint genotypes
+	VCF="${DATA}/contrasts/${C}/joint-genotypes.vcf"
 
 	# create table
-	if [ ! -e ${OUT} ]; then
+	if [ ! -e "${OUT}" ]; then
 		gatk VariantsToTable \
 			-F CHROM \
 			-F POS \
@@ -23,8 +23,7 @@ for CONTRAST in $CONTRASTS; do
 			-GF DP \
 			-GF PL \
 			-GF GQ \
-			--variant ${VCF} \
-			--output ${OUT}
-fi
-
+			--variant "${VCF}" \
+			--output "${OUT}"
+  fi
 done
