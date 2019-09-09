@@ -7,3 +7,4 @@
   - [Crosses and phenotyping](doc/4.1%20Methods%20-%20Crosses%20and%20phenotyping.md)
   - [DNA extraction, sequencing, and mapping assembly](doc/4.2%20Methods%20-%20DNA%20extraction%20and%20sequencing.md)
   - [Genotyping and QTL inference](doc/4.3%20Methods%20-%20Genotyping%20and%20QTL%20inference.md)
+  - [Functional enrichment and refinement](doc/4.4%20Methods%20-%20Functional%20enrichment%20and%20refinement.md)
