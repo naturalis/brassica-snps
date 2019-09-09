@@ -42,6 +42,7 @@ RUN cpanm -n \
 	Bio::Tools::Run::StandAloneBlastPlus \
 	Bio::Tools::Run::RemoteBlast \
 	GO::TermFinder \
+	Convert::Color \
 	git://github.com/naturalis/biomart-perl
 
 # install R packages
