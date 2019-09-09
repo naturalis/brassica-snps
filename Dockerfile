@@ -29,7 +29,8 @@ RUN apt-get update && apt-get install -y \
 	ncbi-blast+ \
 	default-jre \
 	perl-doc \
-	vcftools
+	vcftools \
+	circos
 
 # install perl packages
 RUN cpanm -n \
@@ -43,6 +44,7 @@ RUN cpanm -n \
 	Bio::Tools::Run::RemoteBlast \
 	GO::TermFinder \
 	Convert::Color \
+	SVG \
 	git://github.com/naturalis/biomart-perl
 
 # install R packages
@@ -58,5 +60,6 @@ RUN curl -L -o /usr/local/src/gatk-4.1.3.0.zip https://github.com/broadinstitute
 RUN unzip /usr/local/src/gatk-4.1.3.0.zip
 RUN ln -s /usr/local/src/gatk-4.1.3.0/gatk /usr/local/bin/gatk
 
+# build me as `docker build -t naturalis/brassica-snps .`
 # run me as `docker run -it -v <host data>:/home/ubuntu/data naturalis/brassica-snps`
 CMD [ "/bin/bash" ]
