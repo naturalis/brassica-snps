@@ -1,12 +1,14 @@
 ---
-title: 'Finding the genes that underlie phenotypic differences among segregating bulks: a case study using flowering time in Brassica oleracea'
+title: 'Refining bulk segregant analysis results by GO enrichment graph pruning: a case study using flowering time in _Brassica oleracea_'
 tags:
   - Bulk segregant analysis
   - Quantitative trait locus
   - FLOWERING LOCUS T (FT)
   - Brassica oleracea
-  - Gene ontology
+  - Gene Ontology
   - Pathway analysis
+  - Singular enrichment analysis
+  - Graph topology
 authors:
  - name: Rutger Aldo Vos
    orcid: 0000-0001-9254-7318
