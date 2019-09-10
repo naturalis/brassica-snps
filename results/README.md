@@ -75,7 +75,7 @@ Using the web application here: http://www.interactivenn.net/index2.html
 And the third column (i.e. the GO term name) in the `*/enriched_GO_0003006.tsv`, the
 following Venn diagram was produced:
 
-![](venn.png)
+![](refinement/venn.png)
 
 | Names | total | elements |
 |-------|-------|----------|
