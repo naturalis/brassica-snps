@@ -12,7 +12,8 @@ ADD ./script /home/ubuntu/brassica-snps/script
 ENV PATH "${PATH}:/home/ubuntu/brassica-snps/script"
 
 # add mart location for ensembl plants
-ADD ./conf /usr/local/src/biomart-perl/conf
+ADD ./conf/biomart /usr/local/src/biomart-perl/conf
+ADD ./conf/circos /usr/local/src/circos/conf
 
 # install apt-get packages
 RUN apt-get update && apt-get install -y \
@@ -61,5 +62,5 @@ RUN unzip /usr/local/src/gatk-4.1.3.0.zip
 RUN ln -s /usr/local/src/gatk-4.1.3.0/gatk /usr/local/bin/gatk
 
 # build me as `docker build -t naturalis/brassica-snps .`
-# run me as `docker run -it -v <host data>:/home/ubuntu/data naturalis/brassica-snps`
+# run me as `docker run -it -v /Users/rutger.vos/deleteme:/home/ubuntu/data naturalis/brassica-snps`
 CMD [ "/bin/bash" ]
