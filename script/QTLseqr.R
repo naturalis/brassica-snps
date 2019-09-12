@@ -1,6 +1,8 @@
 #!/usr/bin/Rscript
 
-# load the packages
+# load the packages. Get QTLseqr using:
+# library(devtools)
+# install_github("bmansfeld/QTLseqr")
 library(QTLseqr)
 library(dplyr)
 library(ggplot2)
@@ -12,9 +14,9 @@ library(ggplot2)
 # - group-5-NF - 13 accessions
 
 # Set sample and file names
-HighBulk <- "group-2-IF"
-LowBulk <- "group-1-EF"
-file <- "SNPs_from_GATK-EF-IF.table"
+HighBulk <- "group-5-NF"
+LowBulk <- "group-3-LF"
+file <- "SNPs_from_GATK-LF-NF.table"
 
 # Choose which chromosomes will be included in the analysis (i.e. exclude smaller contigs)
 Chroms <- paste0(rep("C", 9), 1:9)
@@ -66,6 +68,11 @@ df_filt <- runGprimeAnalysis(
 	windowSize = 1e6,
 	outlierFilter = "deltaSNP"
 )
+
+# get threshold (cribbed out of plotQTLStats)
+fdrT <- getFDRThreshold(df_filt$pvalue, alpha = 0.01)
+logFdrT <- -log10(fdrT)
+GprimeT <- df_filt[which(df_filt$pvalue == fdrT), "Gprime"]
 
 # write high G' snps to file
 snps <- filter(df_filt, Gprime > 2.5)
