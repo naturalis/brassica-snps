@@ -62,5 +62,9 @@ RUN unzip /usr/local/src/gatk-4.1.3.0.zip
 RUN ln -s /usr/local/src/gatk-4.1.3.0/gatk /usr/local/bin/gatk
 
 # build me as `docker build -t naturalis/brassica-snps .`
+# push me as:
+# 1. docker login (attempt online through password manager)
+# 2. docker push naturalis/brassica-snps
+
 # run me as `docker run -it -v /Users/rutger.vos/deleteme:/home/ubuntu/data naturalis/brassica-snps`
 CMD [ "/bin/bash" ]
