@@ -1,5 +1,6 @@
 -- The files that are being loaded are in $DATA/reference/sqlite
 -- All files we're loading are tab separated
+-- # documented in supplementary materials
 .separator "\t"
 
 create table if not exists chromosomes (
