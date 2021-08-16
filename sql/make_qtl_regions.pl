@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# documented in supplementary materials
 use strict;
 use warnings;
 
