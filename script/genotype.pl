@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+# documented in supplementary materials
+
 # make reference genome location and list of samples
 my $DATA = $ENV{'DATA'};
 my $REF  = $DATA . '/reference/Brassica_oleracea.v2.1.dna.toplevel.chromosomes.fa';
