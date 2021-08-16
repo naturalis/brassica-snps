@@ -4,6 +4,8 @@ use warnings;
 use Getopt::Long;
 use My::Brassica;
 
+# documented in supplementary materials
+
 =pod
 
 Given a provided contrast, e.g. EF-LF, produces a table of EnsEMBL gene IDs of genes that
