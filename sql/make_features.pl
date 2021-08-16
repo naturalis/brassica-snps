@@ -1,3 +1,4 @@
+# documented in supplementary materials
 my $pk = 1;
 while(<>) {
 	my @fields = split /\t/;
