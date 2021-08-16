@@ -10,6 +10,8 @@ use List::Util qw'min max';
 use GO::OntologyProvider::OboParser;
 use Bio::Phylo::Util::Logger ':simple';
 
+# documented in supplementary materials
+
 # Usage:
 # go_treebuilder.pl --obo=go-basic.obo | dot -Tsvg -o go_subgraph.svg
 
