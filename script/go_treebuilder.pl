@@ -10,6 +10,9 @@ use List::Util qw'min max';
 use GO::OntologyProvider::OboParser;
 use Bio::Phylo::Util::Logger ':simple';
 
+# Usage:
+# go_treebuilder.pl --obo=go-basic.obo | dot -Tsvg -o go_subgraph.svg
+
 # process command line arguments
 my $obo       = 'go-basic.obo';
 my $base      = 'GO:0003006';
