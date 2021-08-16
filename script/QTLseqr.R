@@ -1,5 +1,7 @@
 #!/usr/bin/Rscript
 
+# documented in supplementary materials
+
 # load the packages. Get QTLseqr using:
 # library(devtools)
 # install_github("bmansfeld/QTLseqr")
