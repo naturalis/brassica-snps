@@ -1,5 +1,9 @@
+SQL database creation and code generation
+=========================================
+
 This directory contains files to setup a relational database in SQLite and then export the schema 
-to DBIx::Class modules for handy object-relational mapping. The overall workflow is as follows:
+to [DBIx::Class](https://metacpan.org/pod/DBIx::Class) modules for handy object-relational mapping. 
+The overall workflow is as follows:
 
 1. the helper scripts `make_*.pl` are run to pre-process various reference data tables in a 
    format that is acceptable to the schema. These pre-processing steps are minimal, boiling
