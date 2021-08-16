@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# documented in supplementary materials
+
 # all pairwise comparisons between phenotypes
 CONTRASTS="EF-IF EF-LF EF-NF IF-LF IF-NF LF-NF"
 
