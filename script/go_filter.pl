@@ -4,6 +4,8 @@ use warnings;
 use Getopt::Long;
 use GO::OntologyProvider::OboParser;
 
+# documented in supplementary materials
+
 =pod
 
 This script filters the records in the $infile to retain only those lines where the
