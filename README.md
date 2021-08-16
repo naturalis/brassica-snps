@@ -1,7 +1,5 @@
-brassica-snps
-=============
-Scripts and library code for Gene Ontology-mediated refinement of Bulk Segregant Analyses
------------------------------------------------------------------------------------------
+Refining Bulk Segregant Analyses: Ontology-Mediated Discovery of Flowering Time Genes in _Brassica oleracea_
+------------------------------------------------------------------------------------------------------------
 
 ### Description
 
