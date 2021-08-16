@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# documented in supplementary materials
+
 # reference genome, only mapping against chromosomes
 REF=${DATA}/reference/Brassica_oleracea.v2.1.dna.toplevel.chromosomes.fa
 
