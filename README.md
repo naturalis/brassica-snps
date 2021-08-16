@@ -6,7 +6,8 @@ Refining Bulk Segregant Analyses: Ontology-Mediated Discovery of Flowering Time 
 This repository contains the code for performing the GO-mediated refinement of BSA results
 as described in [10.1101/2021.08.11.455982](https://doi.org/10.1101/2021.08.11.455982).
 The repository's organization is inspired by the guidelines of 
-[10.1371/journal.pcbi.1000424](https://doi.org/10.1371/journal.pcbi.1000424) and is therefore
+[10.1371/journal.pcbi.1000424](https://doi.org/10.1371/journal.pcbi.1000424) and the 
+preferred project layouts promulgated by the Perl5 community and is therefore
 intended to be understandable and reusable. Nevertheless, additional documentation has been
 added to the subfolders in this repository to further explain the various moving parts.
 
