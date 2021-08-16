@@ -9,6 +9,8 @@ use Data::Dumper;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($ERROR);
 
+# documented in supplementary materials
+
 =pod
 
 Given a list of EnsEMBL gene IDs, provided on STDIN line by line, looks for SNPs within
