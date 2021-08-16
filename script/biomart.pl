@@ -7,6 +7,8 @@ use BioMart::Initializer;
 use BioMart::Query;
 use BioMart::QueryRunner;
 
+# documented in supplementary materials
+
 =pod
 
 Given lines of gene IDs (from the EnsEMBL Brassica oleracea genome annotation) provided on 
