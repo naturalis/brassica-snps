@@ -6,6 +6,8 @@ use Getopt::Long;
 use Data::Dumper;
 use Bio::Phylo::Util::Logger ':simple';
 
+# documented in supplementary materials
+
 # process command line arguments
 my $infile; # results/refinement/gProfiler_boleracea_9-9-2019 21-58-35__intersections.csv
 my $verbosity = WARN;
