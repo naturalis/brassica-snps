@@ -14,9 +14,7 @@ added to the subfolders in this repository to further explain the various moving
 ### Contents
 
 - [conf](conf) - configuration files for BioMart mappings and Circos plots
-- [doc](doc) - documentation
 - [lib](lib) - library code for object-relational mapping
-- [results](results) - intermediate and final output files
 - [script](script) - analysis scripts in Shell, Perl and R
 - [sql](sql) - scripts for creating and managing database in Shell, Perl and SQL
 
