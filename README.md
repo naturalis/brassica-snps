@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5211375.svg)](https://doi.org/10.5281/zenodo.5211375)
+
 Refining Bulk Segregant Analyses: Ontology-Mediated Discovery of Flowering Time Genes in _Brassica oleracea_
 ------------------------------------------------------------------------------------------------------------
 
