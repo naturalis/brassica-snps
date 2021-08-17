@@ -5,6 +5,8 @@ use My::Brassica;
 use Getopt::Long;
 use Bio::Phylo::Util::Logger ':simple';
 
+# documented in supplementary materials
+
 # process command line arguments
 my $dbfile = 'snps.db';
 my $window = 1_000_000;
