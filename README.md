@@ -54,11 +54,29 @@ serve as a template. Alternatively, the following structure may be replicated:
       advisable to avoid special characters (such as directory separator symbols)       
       and spaces in folder names.      
 
+With the above structure in place, the analysis steps as described in the 
+supplementary methods PDF can be performed. Where applicable, the PDF 
+indicates how various variables need to be updated for this to work with
+other file naming schemes than we followed.
+
+We provide a Docker [container](https://hub.docker.com/r/naturalis/brassica-snps) 
+inside of which are all the tools and their dependencies for running the analysis 
+steps. That container should be run in interactive mode (i.e. the user 'boots into' 
+the container to run a shell session). Additionally, the container must be made
+aware of the location of the above folder structure on the host machine such that
+it mounts it under `/home/ubuntu/data` inside the container. The command to start
+the container should therefore be something like:
+
+    docker run -it -v $DATA:/home/ubuntu/data naturalis/brassica-snps
+
+Where $DATA is the absolute location of the root of the data folder on the host
+machine.
+
 ### License
 
 MIT License
 
-Copyright (c) 2018 Naturalis Biodiversity Center
+Copyright (c) 2018-2022 Naturalis Biodiversity Center
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
