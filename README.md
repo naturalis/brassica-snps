@@ -46,7 +46,7 @@ serve as a template. Alternatively, the following structure may be replicated:
     |   `-- $CONTRAST6
     `-- sqlite (contains chromosomes.tsv)
 
-> note that in this structure, the root folder can have any name, as long
+> **Note** in this structure, the root folder can have any name, as long
 > as this is specified as the value of the $DATA environment variable.
 > Likewise, the samples and contrasts can have any name. In our analysis, they 
 > were labelled SAMPLE1=group-1-EF, SAMPLE2=group-2-IF, SAMPLE3=group-3-LF and 
