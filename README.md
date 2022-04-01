@@ -49,10 +49,10 @@ serve as a template. Alternatively, the following structure may be replicated:
     * note that in this structure, the root folder can have any name, as long
       as this is specified as the value of the $DATA environment variable.
       Likewise, the samples can have any name. In our analysis, they were 
-      labelled SAMPLE1=EF, SAMPLE2=IF, SAMPLE3=LF and SAMPLE4=NF but this can
-      be anything reasonable. As always, it is advisable to avoid special 
-      characters (such as directory separator symbols) and spaces in folder 
-      names.
+      labelled SAMPLE1=group-1-EF, SAMPLE2=group-2-IF, SAMPLE3=group-3-LF and 
+      SAMPLE4=group-5-NF but this can be anything reasonable. As always, it is 
+      advisable to avoid special characters (such as directory separator symbols)       
+      and spaces in folder names.      
 
 ### License
 
