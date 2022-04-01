@@ -57,9 +57,9 @@ serve as a template. Alternatively, the following structure may be replicated:
 > and spaces in folder names.      
 
 With the above structure in place, the analysis steps as described in the 
-supplementary methods PDF can be performed. Where applicable, the PDF 
-indicates how various variables need to be updated for this to work with
-other file naming schemes than we followed.
+[supplementary methods PDF](doc/SUPPLEMENTARY_METHODS.pdf) can be performed. 
+Where applicable, the PDF indicates how various variables need to be updated 
+for this to work with other file naming schemes than we followed.
 
 We provide a Docker [container](https://hub.docker.com/r/naturalis/brassica-snps) 
 inside of which are all the tools and their dependencies for running the analysis 
