@@ -38,12 +38,12 @@ serve as a template. Alternatively, the following structure may be replicated:
     |   |-- $SAMPLE3
     |   `-- $SAMPLE4
     |-- contrasts
-    |   |-- $SAMPLE1-$SAMPLE2 (will contain outputs)
-    |   |-- $SAMPLE1-$SAMPLE3
-    |   |-- $SAMPLE1-$SAMPLE4
-    |   |-- $SAMPLE2-$SAMPLE3
-    |   |-- $SAMPLE2-$SAMPLE4
-    |   `-- $SAMPLE3-$SAMPLE4
+    |   |-- $CONTRAST1 (will contain outputs)
+    |   |-- $CONTRAST2
+    |   |-- $CONTRAST3
+    |   |-- $CONTRAST4
+    |   |-- $CONTRAST5
+    |   `-- $CONTRAST6
     `-- sqlite (contains chromosomes.tsv)
 
     * note that in this structure, the root folder can have any name, as long
