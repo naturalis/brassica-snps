@@ -46,13 +46,15 @@ serve as a template. Alternatively, the following structure may be replicated:
     |   `-- $CONTRAST6
     `-- sqlite (contains chromosomes.tsv)
 
-    * note that in this structure, the root folder can have any name, as long
-      as this is specified as the value of the $DATA environment variable.
-      Likewise, the samples can have any name. In our analysis, they were 
-      labelled SAMPLE1=group-1-EF, SAMPLE2=group-2-IF, SAMPLE3=group-3-LF and 
-      SAMPLE4=group-5-NF but this can be anything reasonable. As always, it is 
-      advisable to avoid special characters (such as directory separator symbols)       
-      and spaces in folder names.      
+> note that in this structure, the root folder can have any name, as long
+> as this is specified as the value of the $DATA environment variable.
+> Likewise, the samples and contrasts can have any name. In our analysis, they 
+> were labelled SAMPLE1=group-1-EF, SAMPLE2=group-2-IF, SAMPLE3=group-3-LF and 
+> SAMPLE4=group-5-NF but this can be anything reasonable. For the contrasts, we
+> use CONTRAST1=EF-IF, CONTRAST2=EF-LF, CONTRAST3=EF-NF, CONTRAST4=IF-LF,
+> CONTRAST5=IF-NF and CONTRAST6=LF-NF. As always, it is 
+> advisable to avoid special characters (such as directory separator symbols)       
+> and spaces in folder names.      
 
 With the above structure in place, the analysis steps as described in the 
 supplementary methods PDF can be performed. Where applicable, the PDF 
