@@ -22,6 +22,38 @@ added to the subfolders in this repository to further explain the various moving
 - [script](script) - analysis scripts in Shell, Perl and R
 - [sql](sql) - scripts for creating and managing database in Shell, Perl and SQL
 
+### How to use
+
+The contents of this repository (scripts, library code) are meant to be used in
+conjunction with a fixed folder structure of input and reference data. The
+[supplementary data files](https://doi.org/10.5281/zenodo.3402201) of the 
+[paper](https://doi.org/10.1101/2021.08.11.455982) that describes our methods may 
+serve as a template. Alternatively, the following structure may be replicated:
+
+    root ($DATA)
+    |-- reference (contains reference genome in FASTA, annotations in GFF3)
+    |-- BSA 
+    |   |-- $SAMPLE1 (contains $SAMPLE1_R1.fastq.gz and $SAMPLE1_R2.fastq.gz)
+    |   |-- $SAMPLE2
+    |   |-- $SAMPLE3
+    |   `-- $SAMPLE4
+    |-- contrasts
+    |   |-- $SAMPLE1-$SAMPLE2 (will contain outputs)
+    |   |-- $SAMPLE1-$SAMPLE3
+    |   |-- $SAMPLE1-$SAMPLE4
+    |   |-- $SAMPLE2-$SAMPLE3
+    |   |-- $SAMPLE2-$SAMPLE4
+    |   `-- $SAMPLE3-$SAMPLE4
+    `-- sqlite (contains chromosomes.tsv)
+
+    * note that in this structure, the root folder can have any name, as long
+      as this is specified as the value of the $DATA environment variable.
+      Likewise, the samples can have any name. In our analysis, they were 
+      labelled SAMPLE1=EF, SAMPLE2=IF, SAMPLE3=LF and SAMPLE4=NF but this can
+      be anything reasonable. As always, it is advisable to avoid special 
+      characters (such as directory separator symbols) and spaces in folder 
+      names.
+
 ### License
 
 MIT License
