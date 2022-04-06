@@ -51,10 +51,13 @@ for my $contrast ( @contrasts ) {
         );
         for my $t ( @$tsv ) {
             my $term  = $t->{GO_acc} =~ s/:/_/r;
-            my $count = $t->{queryitem};
+            # my $count = $t->{queryitem};
             $terms{$term} = { obj => $go->nodeFromId( $t->{GO_acc} ) } if not $terms{$term};
-            $terms{$term}->{$contrast} = $count;
-            push @counts, $count;
+            $terms{$term}->{$contrast} = {
+                'count' => $t->{queryitem},
+                'pval'  => log($t->{pvalue}),
+            };
+            push @counts, log($t->{pvalue});
         }
     }
     else {
@@ -106,10 +109,11 @@ for my $node ( @nodes ) {
     # build HTML-ish table
     my @cells;
     for my $c ( @contrasts ) {
-        my $count = $terms{$node}->{$c} || 0;
+        my $count = $terms{$node}->{$c}->{count} || 0;
+        my $pval  = $terms{$node}->{$c}->{pval}  || 1;
         my $hsv;
         if ( $count ) {
-            $hsv = make_color($count, @counts);
+            $hsv = make_color($pval, @counts);
         }
         else {
             $hsv = '0 0 0.7'; # white
@@ -150,6 +154,6 @@ sub make_color {
     my $ratio = ( $value - $min ) / ( $max - $min ); # i.e. normalized b/w 0 & 1
 
     # let's say that we want the highest value to be 'red' (0° HSV), i.e. hot, and the lowest 'yellow' (60°)
-    my $H = ( 1 - $ratio ) * 90;
+    my $H = ( $ratio ) * 90;
     return '#' . Convert::Color->new( "hsv:$H,1,1" )->as_rgb8->hex;
 }
