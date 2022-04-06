@@ -52,7 +52,7 @@ RUN cpanm -n \
 RUN R -e "install.packages(c('QTLseqr', 'dplyr', 'ggplot2'), dependencies=T, repos='http://cran.rstudio.com/')"
 
 # all you have to do is this to install GATK because Java is the future
-RUN curl -o /usr/local/src/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2 'https://software.broadinstitute.org/gatk/download/auth?package=GATK-archive&version=3.8-1-0-gf15c1c3ef'
+RUN curl -o /usr/local/src/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2 https://storage.googleapis.com/gatk-software/package-archive/gatk/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2
 RUN tar -xvjf /usr/local/src/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2
 RUN ln -s /usr/local/src/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef/GenomeAnalysisTK.jar /usr/local/src/GenomeAnalysisTK.jar
 
