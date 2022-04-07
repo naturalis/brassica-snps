@@ -31,9 +31,9 @@ conjunction with a fixed folder structure of input and reference data. The
 serve as a template. Alternatively, the following structure may be replicated:
 
     root ($DATA)
-    |-- reference (contains reference genome in FASTA, annotations in GFF3)
+    |-- reference (data: https://zenodo.org/record/3402201/files/reference.zip)
     |-- BSA 
-    |   |-- $SAMPLE1 (contains $SAMPLE1_R1.fastq.gz and $SAMPLE1_R2.fastq.gz)
+    |   |-- $SAMPLE1 (contains FASTQ reads, e.g. https://www.ncbi.nlm.nih.gov/bioproject/PRJNA564368)
     |   |-- $SAMPLE2
     |   |-- $SAMPLE3
     |   `-- $SAMPLE4
@@ -44,7 +44,7 @@ serve as a template. Alternatively, the following structure may be replicated:
     |   |-- $CONTRAST4
     |   |-- $CONTRAST5
     |   `-- $CONTRAST6
-    `-- sqlite (contains chromosomes.tsv)
+    `-- sqlite (contains chromosomes.tsv, e.g.: https://zenodo.org/record/3402201/files/sqlite.zip)
 
 > **Note** in this structure, the root folder can have any name, as long
 > as this is specified as the value of the $DATA environment variable.
